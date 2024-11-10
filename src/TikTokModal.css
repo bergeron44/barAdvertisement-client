@@ -1,0 +1,58 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    position: relative;
+    width: 300px;
+    max-height: 600px;
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tiktok-video {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+}
+
+.info {
+    padding: 10px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.like-btn {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background: #ff3e3e;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.close-btn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+}
