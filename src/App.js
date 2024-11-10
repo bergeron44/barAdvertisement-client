@@ -32,7 +32,7 @@ const App = () => {
             }).addTo(map);
     
             bars.forEach(bar => {
-                const iconUrl = bar.imageUrl ? `/public/img/${bar.name.toLowerCase().replace(/\s+/g, '-')}.jpeg` : '/img/default-bar.jpg';
+                const iconUrl = bar.imageUrl ? `img/${bar.name.toLowerCase().replace(/\s+/g, '-')}.jpeg` : '/img/default-bar.jpg';
                 console.log(iconUrl);  // הדפסת נתיב התמונה
 
                 const barIcon = L.icon({
