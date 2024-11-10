@@ -12,7 +12,7 @@ const App = () => {
     useEffect(() => {
         const fetchBars = async () => {
             try {
-                const response = await axios.get('http://localhost:5001/api/bars');
+                const response = await axios.get('https://baradvertisement-server.onrender.com/api/bars');
                 setBars(response.data);
                 setLoading(false);
             } catch (err) {
@@ -105,7 +105,7 @@ const App = () => {
     const handleLikeClick = async (barName) => {
         try {
             console.log("In handle click for:", barName);
-            await axios.post(`http://localhost:5001/api/bars/${barName}/like`);
+            await axios.post(`https://baradvertisement-server.onrender.com/api/bars/${barName}/like`);
             alert('Thank you for liking the bar!');
         } catch (error) {
             console.error('Error while liking the bar:', error);
