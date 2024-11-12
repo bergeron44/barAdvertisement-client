@@ -25,7 +25,7 @@ const App = () => {
 
     useEffect(() => {
         if (bars.length > 0) {
-            const map = L.map(mapContainerRef.current).setView([31.2622, 34.8013], 14);
+            const map = L.map(mapContainerRef.current).setView([31.2622, 34.8013], 15);
     
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
