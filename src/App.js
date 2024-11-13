@@ -33,20 +33,18 @@ const App = () => {
     
             bars.forEach(bar => {
                 const iconUrl = bar.imageUrl ? `/img/${bar.name.toLowerCase().replace(/\s+/g, '-')}.jpeg` : '/img/default-bar.jpg';
-                console.log(iconUrl);  // הדפסת נתיב התמונה
 
-                const barIcon = L.icon({
-                    iconUrl,
+                // יצירת אייקון עגול עם border-radius
+                const barIcon = L.divIcon({
+                    html: `<img src="${iconUrl}" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid white;" alt="${bar.name}"/>`,
                     iconSize: [60, 60],
-                    iconAnchor: [30, 60],
-                    popupAnchor: [0, -60]
+                    className: 'custom-icon' // כיתה מותאמת אישית לאייקון
                 });
-    
+
                 const marker = L.marker([bar.lat, bar.lng], { icon: barIcon }).addTo(map);
-    
                 const googleMapsLink = `https://www.google.com/maps?q=${bar.lat},${bar.lng}`;
-    
-                // Creating popup content with bar details
+
+                // יצירת תוכן הפופ-אפ עם פרטי הבר
                 const popupContent = `
                     <div style="text-align: center; font-family: Arial, sans-serif; padding: 15px; border: 2px solid #ddd; border-radius: 8px; width: 250px; background-color: #f9f9f9;">
                         <h3 style="margin: 5px 0; color: #333; font-size: 18px;">${bar.name}</h3>
@@ -74,23 +72,22 @@ const App = () => {
                         </div>
                     </div>
                 `;
-    
+
                 marker.bindPopup(popupContent);
-    
-                // Use popupopen event to add the like event listener
+
+                // פתיחת אירוע popupopen להוספת הקשבה ללחיצה על הלייק
                 marker.on('popupopen', () => {
                     const likeLink = document.querySelector(`[data-bar-name="${bar.name}"]`);
                     if (likeLink) {
                         likeLink.addEventListener('click', (e) => {
-                            e.preventDefault(); // מונע את פתיחת הלינק לפני שמטפלים בלייק
-                            handleLikeClick(bar.name) // טיפול בלייק
+                            e.preventDefault(); // מונע פתיחה אוטומטית של הלינק
+                            handleLikeClick(bar.name)
                                 .then(() => {
-                                    // מאפשר מעבר ללינק לאחר טיפול בלייק
+                                    // פתיחת הלינק לאחר טיפול בלייק
                                     window.open(googleMapsLink, '_blank'); 
                                 })
                                 .catch(err => {
                                     console.error('Error while liking the bar:', err);
-                                    // גם אם היה שגיאה, נוודא שהלינק ייפתח
                                     window.open(googleMapsLink, '_blank');
                                 });
                         });
@@ -98,7 +95,7 @@ const App = () => {
                 });
             });
     
-            // Cleanup map on unmount
+            // ניקוי המפה בפריקה
             return () => map.remove();
         }
     }, [bars]);
@@ -107,7 +104,6 @@ const App = () => {
         try {
             console.log("In handle click for:", barName);
             await axios.post(`https://baradvertisement-server.onrender.com/api/bars/${barName}/like`);
-            alert('Thank you for liking the bar!');
         } catch (error) {
             console.error('Error while liking the bar:', error);
         }
@@ -128,16 +124,16 @@ const App = () => {
 // סגנון לכותרת המפה עם תמונה כרקע
 const headerStyles = {
     textAlign: 'center',
-    padding: '0', // Removes padding to better fit the height
-    fontSize: '36px', // Larger text size
-    backgroundImage: 'url("/img/logo.png")', // Path to the image inside the public folder
-    backgroundSize: 'contain', // Ensures the entire image fits without cropping
-    backgroundRepeat: 'no-repeat', // Prevents the image from repeating
-    backgroundPosition: 'center', // Keeps the image centered
-    color: 'white', // Text color
-    fontFamily: 'Arial, sans-serif', // Font style
-    height: '12.5vh', // Set the height to one-eighth of the viewport height
-    width: '100%', // Ensures the width is 100% of the screen width
+    padding: '0', // הסרת padding למראה מותאם
+    fontSize: '36px', // גודל טקסט גדול יותר
+    backgroundImage: 'url("/img/logo.png")', // נתיב לתמונה בתיקיית public
+    backgroundSize: 'contain', // הבטחה שהתמונה לא תיחתך
+    backgroundRepeat: 'no-repeat', // מניעת חזרה של התמונה
+    backgroundPosition: 'center', // מרכז את התמונה
+    color: 'white', // צבע הטקסט
+    fontFamily: 'Arial, sans-serif', // סגנון הפונט
+    height: '12.5vh', // גובה של שמינית מגובה התצוגה
+    width: '100%', // מבטיח שהרוחב יהיה 100% מרוחב המסך
 };
 
 // CSS to make it responsive
