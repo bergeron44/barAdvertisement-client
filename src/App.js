@@ -3,6 +3,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import axios from 'axios';
 
+
 const BASE_API_URL = 'https://bangyourhead-server.onrender.com/api'; 
 
 const App = () => {
@@ -169,6 +170,9 @@ const App = () => {
     const toggleView = () => {
         setIsBarsView(!isBarsView);
     };
+    const handlePhoneClick=()=> {
+        alert('ליצירת קשר : 0547456817   ');
+      }
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>{error}</div>;
@@ -177,7 +181,10 @@ const App = () => {
         <div style={{ position: 'relative' }}>
             <header style={headerStyles}>
             <button onClick={toggleView} style={toggleButtonStyles}>
-                    {isBarsView ? 'מפת ארועים' : 'הברים'}
+                    {isBarsView ? ' לארועים' : 'לברים'}
+                </button>
+                <button onClick={handlePhoneClick} style={phoneButtonStyles}>
+                      📞
                 </button>
             </header>
             <div ref={mapContainerRef} style={mapStyles} key={isBarsView ? 'bars-map' : 'events-map'} /> 
@@ -193,25 +200,43 @@ const mapStyles = {
 
 // עיצוב כפתור מעבר בין תצוגות (רספונסיבי)
 const toggleButtonStyles = {
-    padding: '5px 10px',          // גודל קטן יותר של כפתור
+    padding: '0',                // מבטל ריווח פנימי כדי לשלוט טוב יותר על הגודל
     background: '#007bff',
     color: 'white',
     border: 'none',
     borderRadius: '5px',
     cursor: 'pointer',
-    fontSize: '13px',             // גודל גופן קטן
-    position: 'absolute',         // מיקום מוחלט
-    top: '10px',                  // מרווח מלמעלה (יותר גבוה)
-    left: '10px',                // מרווח מימין (פינה ימנית)
-    zIndex: '10',                 // מוודא שהכפתור יהיה מעל כל אלמנט אחר
+    fontSize: '13px',            // גודל גופן קטן
+    position: 'absolute',        // מיקום מוחלט
+    top: '10%',                  // ממקם מלמעלה ביחס לגובה
+    left: '2%',                 // ממקם משמאל ביחס לרוחב
+    zIndex: '10',                // מעל כל אלמנט אחר
+    width: '15%',                // רוחב 20% מהאלמנט ההורה
+    height: '80%',               // גובה 80% מהאלמנט ההורה
+    display: 'flex',             // מאפשר מרכזיות בתוכן
+    alignItems: 'center',        // מרכז אנכית
+    justifyContent: 'center',    // מרכז אופקית
 };
+const phoneButtonStyles = {
+    padding: '7px 12px',          // Small button size
+    background: 'white',        // Button background color (blue)
+    color: 'white',               // White text color
+    border: '1px solid #007bff', // Matches the button's background color
+    borderRadius: '5px',          // Rounded corners
+    cursor: 'pointer',            // Pointer cursor on hover
+    fontSize: '20px',             // Small font size
+    position: 'absolute',         // Position relative to the container
+    top: '10px',                  // Top margin (higher up)
+    right: '40px',                // Right margin (right corner)
+    zIndex: '10',                 // Ensures the button is above other elements
+  };
 
 // עיצוב כותרת
 const headerStyles = {
     textAlign: 'center',
     padding: '0',
     backgroundImage: 'url("/img/logo.png")',
-    backgroundSize: 'contain',
+    backgroundSize: '60%',  
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
     color: 'white',
