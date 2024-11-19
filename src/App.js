@@ -233,6 +233,7 @@ const phoneButtonStyles = {
 
 // עיצוב כותרת
 const headerStyles = {
+    position: 'fixed', /* שמירה על המיקום */
     textAlign: 'center',
     padding: '0',
     backgroundImage: 'url("/img/logo.png")',
