@@ -73,28 +73,95 @@ const App = () => {
                 // יצירת popupContent רספונסיבי
                  googleMapsLink = `https://www.google.com/maps?q=${bar.lat},${bar.lng}`;
                  popupContent = `
-                    <div style="text-align: center; font-family: Arial; padding: 10px; background: rgba(255, 255, 255, 0.95); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); width: auto; max-width: 300px; border-radius: 10px;">
-                        <h3 style="margin: 5px 0; color: #333; font-size: 16px;">${bar.name}</h3>
-                        <div style="margin-bottom: 10px; font-size: 14px;">
-                            ${bar.website ? 
-                                `<a href="${bar.website}" target="_blank" style="color: #007bff;">Website</a>` 
-                                : bar.instagram ? 
-                                    `<a href="${bar.instagram}" target="_blank" style="color: #E1306C;"> Instagram</a>` 
-                                    : '<span style="color: red;">Not Available</span>'
-                            }
-                        </div>
-                          <div style="font-size: 14px; color: red; margin-bottom: 10px;">
-                            <b>! מבצעים </b>
-                        </div>
-                        <div style="font-size: 12px; color: black; margin-bottom: 10px;">
-                            ${bar.discountOne ? `<p>${bar.discountOne}</p>` : ''}
-                            ${bar.discountSec ? `<p>${bar.discountSec}</p>` : ''}
-                            ${bar.discountThi ? `<p>${bar.discountThi}</p>` : ''}
-                        </div>
-                        <button class="like-button" data-bar-name="${bar.name}" style="padding: 8px; background: #007bff; color: white; border: none; border-radius: 5px; font-size: 12px; cursor: pointer; width: 100%;">מעוניין בארוע</button>
-                        <p><a href="${googleMapsLink}" target="_blank" style="color: #007bff; font-size: 12px;">נווט לבר</a></p>
-                    </div>
-                `;
+                 <div style="
+                     text-align: center; 
+                     font-family: 'Arial', sans-serif; 
+                     padding: 20px; 
+                     background: linear-gradient(135deg, #f5f5f5, #e6e6e6); 
+                     color: #333; 
+                     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); 
+                     max-width: 350px; 
+                     border-radius: 15px; 
+                     border: 1px solid #ccc;
+                     position: relative;
+                     overflow: hidden;
+                 ">
+                     <h3 style="
+                         margin: 0 0 15px; 
+                         font-size: 18px; 
+                         font-weight: bold; 
+                         color: #333;
+                     ">${bar.name}</h3>
+                     
+                     <div style="
+                         margin-bottom: 15px; 
+                         font-size: 14px; 
+                         color: #555;
+                     ">
+                         ${bar.website ? 
+                             `<a href="${bar.website}" target="_blank" style="
+                                 color: #007bff; 
+                                 text-decoration: underline; 
+                                 font-weight: bold;">Website</a>` 
+                             : bar.instagram ? 
+                                 `<a href="${bar.instagram}" target="_blank" style="
+                                     color: #555; 
+                                     text-decoration: underline; 
+                                     font-weight: bold;">Instagram</a>` 
+                                 : '<span style="color: #999;">Not Available</span>'
+                         }
+                     </div>
+                     
+                     <div style="
+                         font-size: 14px; 
+                         color: #d9534f; 
+                         margin-bottom: 10px; 
+                         font-weight: bold;">
+                         <b>!מבצעים</b>
+                     </div>
+                     
+                     <div style="
+                         font-size: 12px; 
+                         color: #333; 
+                         margin-bottom: 15px; 
+                         background: rgba(255, 255, 255, 0.85); 
+                         padding: 10px; 
+                         border-radius: 10px; 
+                         border: 1px solid #ddd;">
+                         ${bar.discountOne ? `<p style="margin: 5px 0;">${bar.discountOne}</p>` : ''}
+                         ${bar.discountSec ? `<p style="margin: 5px 0;">${bar.discountSec}</p>` : ''}
+                         ${bar.discountThi ? `<p style="margin: 5px 0;">${bar.discountThi}</p>` : ''}
+                     </div>
+                     
+                     <button class="like-button" data-bar-name="${bar.name}" style="
+                         padding: 12px 20px; 
+                         background: linear-gradient(135deg, #333, #555); 
+                         color: white; 
+                         border: none; 
+                         border-radius: 10px; 
+                         font-size: 14px; 
+                         cursor: pointer; 
+                         width: 100%; 
+                         text-transform: uppercase;
+                         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+                         transition: all 0.3s ease-in-out;
+                     "
+                     onmouseover="this.style.background='linear-gradient(135deg, #555, #777)'; this.style.transform='scale(1.05)'"
+                     onmouseout="this.style.background='linear-gradient(135deg, #333, #555)'; this.style.transform='scale(1)'">
+                         מעוניין בארוע
+                     </button>
+                     
+                     <p style="
+                         margin-top: 15px; 
+                         font-size: 12px; 
+                         color: #333; 
+                         font-weight: bold;">
+                         <a href="${googleMapsLink}" target="_blank" style="
+                             color: #007bff; 
+                             text-decoration: underline;">נווט לבר</a>
+                     </p>
+                 </div>
+             `;
             }
             else
             {
