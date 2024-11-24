@@ -43,7 +43,10 @@ const App = () => {
         }
 
         // יצירת מפה חדשה
-        mapRef.current = L.map(mapContainerRef.current).setView([31.2622, 34.8013], 15);
+        if(isBarsView)
+          mapRef.current = L.map(mapContainerRef.current).setView([31.2622, 34.8013], 15);
+        else
+        mapRef.current = L.map(mapContainerRef.current).setView([31.2622, 34.8013], 20);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap contributors',
         }).addTo(mapRef.current);
@@ -108,23 +111,111 @@ const App = () => {
                // יצירת popupContent רספונסיבי
                 googleMapsLink = `https://www.google.com/maps?q=${bar.location.lat},${bar.location.lng}`;
                 popupContent = `
-                   <div style="text-align: center; font-family: Arial; padding: 10px; background: rgba(255, 255, 255, 0.95); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); width: auto; max-width: 300px; border-radius: 10px;">
-                       <h3 style="margin: 5px 0; color: #333; font-size: 16px;">${bar.name}</h3>
-                       <div style="margin-bottom: 10px; font-size: 14px;">
-                           ${bar.website ? 
-                               `<a href="${bar.website}" target="_blank" style="color: #007bff;">להזמנת כרטיסים</a>` 
-                               : bar.instagram ? 
-                                   `<a href="${bar.instagram}" target="_blank" style="color: #E1306C;">Instagram</a>` 
-                                   : '<span style="color: red;">Not Available</span>'
-                           }
-                       </div>
-                       <div style="font-size: 12px; color: green; margin-bottom: 10px;">
-                           ${bar.description ? `<p>${bar.description}</p>` : ''}
-                       </div>
-                       <button class="like-button" data-bar-name="${bar.name}" style="padding: 8px; background: #007bff; color: white; border: none; border-radius: 5px; font-size: 12px; cursor: pointer; width: 100%;">מעוניין בארוע</button>
-                       <p><a href="${googleMapsLink}" target="_blank" style="color: #007bff; font-size: 12px;">נווט</a></p>
-                   </div>
-               `;
+    <div style="
+        text-align: center; 
+        font-family: 'Poppins', Arial, sans-serif; 
+        padding: 20px; 
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb); 
+        color: #000; 
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5); 
+        max-width: 350px; 
+        border-radius: 20px; 
+        overflow: hidden; 
+        position: relative;
+        animation: popUp 0.6s ease-out;
+    ">
+        <div style="
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.4), transparent); 
+            pointer-events: none;">
+        </div>
+        <h3 style="
+            margin: 0; 
+            font-size: 22px; 
+            font-weight: bold; 
+            color: #000; 
+            text-shadow: none;
+        ">${bar.name}</h3>
+        <div style="
+            margin: 15px 0; 
+            font-size: 16px; 
+            font-weight: 500; 
+            background: rgba(255, 255, 255, 0.8); 
+            padding: 10px; 
+            border-radius: 10px;
+        ">
+            ${bar.website ? 
+                `<a href="${bar.website}" target="_blank" style="
+                    color: #007bff; 
+                    text-decoration: underline; 
+                    font-weight: bold;">להזמנת כרטיסים</a>` 
+                : bar.instagram ? 
+                    `<a href="${bar.instagram}" target="_blank" style="
+                        color: #007bff; 
+                        text-decoration: underline; 
+                        font-weight: bold;">Instagram</a>` 
+                    : '<span style="color: red;">Not Available</span>'
+            }
+        </div>
+        <div style="
+            margin-bottom: 15px; 
+            font-size: 14px; 
+            color: #000; 
+            background: rgba(255, 255, 255, 0.8); 
+            padding: 10px; 
+            border-radius: 10px;">
+            ${bar.description ? `<p>${bar.description}</p>` : ''}
+        </div>
+        <div style="
+            margin-bottom: 15px; 
+            font-size: 14px; 
+            color: #000; 
+            font-weight: bold;">
+            ${bar.date ? `<p>📅 תאריך: ${new Date(bar.date).toLocaleDateString('he-IL', { year: 'numeric', month: 'long', day: 'numeric' })}</p>` : ''}
+        </div>
+        <button class="like-button" data-bar-name="${bar.name}" style="
+            padding: 12px 20px; 
+            background: linear-gradient(135deg, #ff758c, #ff7eb3); 
+            color: white; 
+            border: none; 
+            border-radius: 15px; 
+            font-size: 14px; 
+            cursor: pointer; 
+            width: 100%; 
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+            transition: all 0.4s ease-in-out;
+        " 
+        onmouseover="this.style.background='linear-gradient(135deg, #ff4a78, #ff758c)'; this.style.transform='scale(1.05)'" 
+        onmouseout="this.style.background='linear-gradient(135deg, #ff758c, #ff7eb3)'; this.style.transform='scale(1)'">
+            מעוניין בארוע
+        </button>
+        <p style="
+            margin-top: 15px; 
+            font-size: 14px; 
+            font-weight: bold;">
+            <a href="${googleMapsLink}" target="_blank" style="
+                color: #007bff; 
+                text-decoration: underline;">נווט</a>
+        </p>
+    </div>
+
+    <style>
+        @keyframes popUp {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+`;
 
 
 
@@ -181,7 +272,7 @@ const App = () => {
         <div style={{ position: 'relative' }}>
             <header style={headerStyles}>
             <button onClick={toggleView} style={toggleButtonStyles}>
-                    {isBarsView ? ' לארועים' : 'לברים'}
+                    {isBarsView ? ' לארועים' : 'להנחות'}
                 </button>
                 <button onClick={handlePhoneClick} style={phoneButtonStyles}>
                       📞
