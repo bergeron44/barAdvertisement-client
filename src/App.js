@@ -4,7 +4,8 @@ import 'leaflet/dist/leaflet.css';
 import axios from 'axios';
 
 
-const BASE_API_URL = 'https://bangyourhead-server.onrender.com/api'; 
+//const BASE_API_URL = 'https://bangyourhead-server.onrender.com/api'; 
+const BASE_API_URL = 'https://final-project-server-sk27.onrender.com/api'; 
 
 const App = () => {
     const mapContainerRef = useRef(null);
