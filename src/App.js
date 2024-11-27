@@ -15,6 +15,7 @@ const App = () => {
     const [error, setError] = useState(null);
     const [isBarsView, setIsBarsView] = useState(true);
 
+
     // הבאת נתונים מה-API
     const fetchData = async (endpoint) => {
         setLoading(true);
@@ -45,9 +46,9 @@ const App = () => {
 
         // יצירת מפה חדשה
         if(isBarsView)
-          mapRef.current = L.map(mapContainerRef.current).setView([31.2622, 34.8013], 15);
+          mapRef.current = L.map(mapContainerRef.current).setView([31.2622, 34.8013], 14);
         else
-        mapRef.current = L.map(mapContainerRef.current).setView([31.2622, 34.8013], 20);
+        mapRef.current = L.map(mapContainerRef.current).setView([31.2622, 34.8013], 17);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap contributors',
         }).addTo(mapRef.current);
@@ -149,7 +150,7 @@ const App = () => {
                      "
                      onmouseover="this.style.background='linear-gradient(135deg, #555, #777)'; this.style.transform='scale(1.05)'"
                      onmouseout="this.style.background='linear-gradient(135deg, #333, #555)'; this.style.transform='scale(1)'">
-                         מעוניין בארוע
+אני אגיע
                      </button>
                      
                      <p style="
@@ -259,7 +260,7 @@ const App = () => {
         " 
         onmouseover="this.style.background='linear-gradient(135deg, #ff4a78, #ff758c)'; this.style.transform='scale(1.05)'" 
         onmouseout="this.style.background='linear-gradient(135deg, #ff758c, #ff7eb3)'; this.style.transform='scale(1)'">
-            מעוניין בארוע
+אני אגיע
         </button>
         <p style="
             margin-top: 15px; 
