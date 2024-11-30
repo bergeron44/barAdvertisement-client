@@ -62,7 +62,7 @@ const App = () => {
             var marker;
             if(isBarsView)
             {
-                 iconUrl = bar.imageUrl ? `/img/${bar.name.toLowerCase().replace(/\s+/g, '-')}.jpeg` : '/img/default-bar.jpg';
+                 iconUrl = bar.imageUrl ? `/img/${bar.name.toLowerCase().replace(/\s+/g, '-')}.jpeg` : '/img/sport.jpg';
 
                  barIcon = L.divIcon({
                     html: `<img src="${iconUrl}" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid white;" alt="${bar.name}"/>`,
