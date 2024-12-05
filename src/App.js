@@ -346,7 +346,7 @@ const App = () => {
         setIsBarsView(!isBarsView);
     };
     const handlePhoneClick=()=> {
-        alert('יש לך הנחה לסטודנטים שבא לך שנכניס התקשר  : 0547456817   ');
+        alert('יש לך הנחה או ארוע לסטודנטים שבא לך שנכניס התקשר  : 0547456817   ');
       }
 
     if (loading) return <div>Loading...</div>;
