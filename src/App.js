@@ -17,11 +17,26 @@ const App = () => {
 
 
     // הבאת נתונים מה-API
+      // פונקציה לסינון הארועים לפי תאריך
+      const filterEventsByDate = (events) => {
+        const currentDate = new Date();
+        return events.filter(event => {
+            const eventDate = new Date(event.date);
+            return eventDate > currentDate; // מחזיר רק אירועים שהתאריך שלהם אחרי התאריך הנוכחי
+        });
+    };
+
+    // הבאת נתונים מה-API
     const fetchData = async (endpoint) => {
         setLoading(true);
         try {
             const response = await axios.get(`${BASE_API_URL}/${endpoint}`);
-            setData(response.data);
+            let filteredData = response.data;
+            if (!isBarsView) {
+                // אם אנחנו בתצוגת הארועים, נבצע סינון לפי תאריך
+                filteredData = filterEventsByDate(filteredData);
+            }
+            setData(filteredData);
         } catch (err) {
             setError('Failed to fetch data. Please try again.');
         } finally {
@@ -331,7 +346,7 @@ const App = () => {
         setIsBarsView(!isBarsView);
     };
     const handlePhoneClick=()=> {
-        alert('ליצירת קשר : 0547456817   ');
+        alert('יש לך הנחה לסטודנטים שבא לך שנכניס התקשר  : 0547456817   ');
       }
 
     if (loading) return <div>Loading...</div>;
