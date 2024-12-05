@@ -165,7 +165,7 @@ const App = () => {
                      "
                      onmouseover="this.style.background='linear-gradient(135deg, #555, #777)'; this.style.transform='scale(1.05)'"
                      onmouseout="this.style.background='linear-gradient(135deg, #333, #555)'; this.style.transform='scale(1)'">
-אני אגיע
+                       בא לי על ההנחה
                      </button>
                      
                      <p style="
