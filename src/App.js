@@ -138,7 +138,7 @@ const App = () => {
                             color: #d9534f; 
                             margin-bottom: 10px; 
                             font-weight: bold;">
-                            <b>!מבצעים</b>
+                            <b>!חבילות בלעדיות למשחקי השתייה</b>
                         </div>
                         
                        <div style="
@@ -202,6 +202,46 @@ const App = () => {
                         </p>
                     </div>
                 `; 
+                }
+                else if (bar.id === 0) {
+                    iconUrl = bar.imageUrl ? `/img/${bar.imageUrl.toLowerCase().replace(/\s+/g, '-')}.jpeg` : '/img/sport.jpg';
+                
+                    barIcon = L.divIcon({
+                        html: `<img src="${iconUrl}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 3px solid white;" alt="University"/>`,
+                        iconSize: [70, 70],
+                        className: 'custom-icon',
+                    });
+                
+                    marker = L.marker([bar.lat, bar.lng], { icon: barIcon }).addTo(mapRef.current);
+                
+                    popupContent = `
+                    <div style="
+                        text-align: center; 
+                        font-family: 'Arial', sans-serif; 
+                        padding: 20px; 
+                        background: linear-gradient(135deg, #f8f9fa, #cfe8f3);
+                        color: #333; 
+                        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); 
+                        max-width: 350px; 
+                        border-radius: 15px; 
+                        border: 2px solid #007bff;
+                    ">
+                        <h3 style="
+                            margin: 0 0 15px; 
+                            font-size: 20px; 
+                            font-weight: bold; 
+                            color: #007bff;
+                        ">University Campus</h3>
+                        
+                        <p style="
+                            margin-bottom: 20px; 
+                            font-size: 14px; 
+                            color: #555;
+                        "> האוניברסיטה</p>
+                
+                    </div>
+                    `;
+                
                 }
                 else
                 {
