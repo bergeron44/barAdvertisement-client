@@ -517,11 +517,12 @@ const App = () => {
                     if (url) {
                         window.open(url, '_blank');
                     }
-                    else
+                    
+                }
+                else
                     {
                         alert(`Get Loose ותחפש ברקוד של  ${bar.name} לך לבר `);
                     }
-                }
             }
             else
             {
