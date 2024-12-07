@@ -185,6 +185,8 @@ const App = () => {
                 }
                 else
                 {
+                    iconUrl = bar.imageUrl ? `/img/${bar.imageUrl.toLowerCase().replace(/\s+/g, '-')}.jpeg` : '/img/sport.jpg';
+
                     barIcon = L.divIcon({
                         html: `<img src="${iconUrl}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid white;" alt="${bar.name}"/>`,
                         iconSize: [40, 40], // כאן קטנו את האייקון
