@@ -517,6 +517,10 @@ const App = () => {
                     if (url) {
                         window.open(url, '_blank');
                     }
+                    else
+                    {
+                        alert(`Get Loose ותחפש ברקוד של  ${bar.name} לך לבר `);
+                    }
                 }
             }
             else
@@ -525,7 +529,7 @@ const App = () => {
             }
             console.log(data);
 
-            alert(`You liked ${bar.name}!`);
+            
         } catch (error) {
             console.error('Error while liking the bar:', error);
         }
