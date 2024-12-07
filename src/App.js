@@ -52,18 +52,19 @@ const App = () => {
 
     // טעינת המפה והוספת המרקרים
     useEffect(() => {
+        window.handleLikeClick = handleLikeClick;
         if (!mapContainerRef.current) return;
         
         // הסרת מפה קיימת במקרה שהיא נטענה כבר
         if (mapRef.current) {
             mapRef.current.remove();
         }
-
+         
         // יצירת מפה חדשה
         if(isBarsView)
           mapRef.current = L.map(mapContainerRef.current).setView([31.2622, 34.8013], 14);
         else
-        mapRef.current = L.map(mapContainerRef.current).setView([31.2622, 34.8013], 17);
+          mapRef.current = L.map(mapContainerRef.current).setView([31.2622, 34.8013], 17);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap contributors',
         }).addTo(mapRef.current);
@@ -82,7 +83,7 @@ const App = () => {
                     iconUrl = bar.imageUrl ? `/img/${bar.name.toLowerCase().replace(/\s+/g, '-')}.jpeg` : '/img/sport.jpg';
 
                     barIcon = L.divIcon({
-                       html: `<img src="${iconUrl}" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid white;" alt="${bar.name}"/>`,
+                       html: `<img src="${iconUrl}" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid white;" alt="${bar.name}"/>`,
                        iconSize: [60, 60],
                        className: 'custom-icon',
                    });
@@ -97,7 +98,7 @@ const App = () => {
                         text-align: center; 
                         font-family: 'Arial', sans-serif; 
                         padding: 20px; 
-                        background: linear-gradient(135deg, #f5f5f5, #e6e6e6); 
+                        background: linear-gradient(135deg, #a8dadc, #f3c6c1);
                         color: #333; 
                         box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); 
                         max-width: 350px; 
@@ -140,17 +141,36 @@ const App = () => {
                             <b>!מבצעים</b>
                         </div>
                         
-                        <div style="
+                       <div style="
                             font-size: 12px; 
                             color: #333; 
                             margin-bottom: 15px; 
-                            background: rgba(255, 255, 255, 0.85); 
                             padding: 10px; 
                             border-radius: 10px; 
-                            border: 1px solid #ddd;">
-                            ${bar.discountOne ? `<p style="margin: 5px 0;">${bar.discountOne}</p>` : ''}
-                            ${bar.discountSec ? `<p style="margin: 5px 0;">${bar.discountSec}</p>` : ''}
-                            ${bar.discountThi ? `<p style="margin: 5px 0;">${bar.discountThi}</p>` : ''}
+                            border: 1px solid #ddd;
+                            background-color: white; /* רקע לבן */
+                        ">
+                            ${bar.discountOne ? `<p style="
+                                margin: 5px 0; 
+                                font-weight: bold; 
+                                font-size: 14px; 
+                                color: #e91e63; /* צבע אדום-ורוד */
+                                text-transform: uppercase;
+                            ">${bar.discountOne}</p>` : ''}
+                            ${bar.discountSec ? `<p style="
+                                margin: 5px 0; 
+                                font-weight: normal; 
+                                font-size: 14px; 
+                                color: #9c27b0; /* צבע ארגמן */
+                                text-transform: uppercase;
+                            ">${bar.discountSec}</p>` : ''}
+                            ${bar.discountThi ? `<p style="
+                                margin: 5px 0; 
+                                font-weight: normal; 
+                                font-size: 14px; 
+                                color: #f06292; /* צבע ורוד חזק */
+                                text-transform: uppercase;
+                            ">${bar.discountThi}</p>` : ''}
                         </div>
                         
                         <button class="like-button" data-bar-name="${bar.name}" style="
@@ -188,7 +208,7 @@ const App = () => {
                     iconUrl = bar.imageUrl ? `/img/${bar.imageUrl.toLowerCase().replace(/\s+/g, '-')}.jpeg` : '/img/sport.jpg';
 
                     barIcon = L.divIcon({
-                        html: `<img src="${iconUrl}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid white;" alt="${bar.name}"/>`,
+                        html: `<img src="${iconUrl}" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid white;" alt="${bar.name}"/>`,
                         iconSize: [40, 40], // כאן קטנו את האייקון
                         className: 'custom-icon',
                      });
@@ -203,7 +223,7 @@ const App = () => {
                              text-align: center; 
                              font-family: 'Arial', sans-serif; 
                              padding: 20px; 
-                             background: linear-gradient(135deg, #f5f5f5, #e6e6e6); 
+                             background: linear-gradient(135deg, #a8dadc, #ffffff); 
                              color: #333; 
                              box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); 
                              max-width: 100%; 
@@ -215,7 +235,7 @@ const App = () => {
                              box-sizing: border-box;
                          ">
                              <!-- תמונה בראש הפופאפ -->
-                             <img src="../public/img/student7.jpeg" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; margin-bottom: 15px;"/>
+                          <img src="img/student7.jpeg" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 15px;"/>
                      
                              <!-- שם -->
                              <h3 style="
@@ -234,34 +254,57 @@ const App = () => {
                                  <b>!מבצעים</b>
                              </div>
                              
-                             <div style="
-                                 font-size: 12px; 
-                                 color: #333; 
-                                 margin-bottom: 15px; 
-                                 background: rgba(255, 255, 255, 0.85); 
-                                 padding: 10px; 
-                                 border-radius: 10px; 
-                                 border: 1px solid #ddd;">
-                                 ${bar.discountOne ? `<p style="margin: 5px 0;">${bar.discountOne}</p>` : ''}
-                                 ${bar.discountSec ? `<p style="margin: 5px 0;">${bar.discountSec}</p>` : ''}
-                                 ${bar.discountThi ? `<p style="margin: 5px 0;">${bar.discountThi}</p>` : ''}
-                             </div>
+                            <div style="
+                                        font-size: 12px; 
+                                        color: #333; 
+                                        margin-bottom: 15px; 
+                                        padding: 10px; 
+                                        border-radius: 10px; 
+                                        border: 1px solid #ddd;
+                                        background-color: white; /* רקע לבן */
+                                    ">
+                                        ${bar.discountOne ? `<p style="
+                                            margin: 5px 0; 
+                                            font-weight: bold; 
+                                            font-size: 14px; 
+                                            color: #e91e63; /* צבע אדום-ורוד */
+                                            text-transform: uppercase;
+                                        ">${bar.discountOne}</p>` : ''}
+                                        ${bar.discountSec ? `<p style="
+                                            margin: 5px 0; 
+                                            font-weight: normal; 
+                                            font-size: 14px; 
+                                            color: #9c27b0; /* צבע ארגמן */
+                                            text-transform: uppercase;
+                                        ">${bar.discountSec}</p>` : ''}
+                                        ${bar.discountThi ? `<p style="
+                                            margin: 5px 0; 
+                                            font-weight: normal; 
+                                            font-size: 14px; 
+                                            color: #f06292; /* צבע ורוד חזק */
+                                            text-transform: uppercase;
+                                        ">${bar.discountThi}</p>` : ''}
+                                    </div>
                      
-                             <!-- קישור לאתר -->
-                             <div style="margin-bottom: 15px;">
-                                 ${bar.website ? 
-                                     `<a href="${bar.website}" target="_blank" style="
-                                         color: #007bff; 
-                                         text-decoration: underline; 
-                                         font-weight: bold;">למימוש ההטבה</a>` 
-                                     : bar.instagram ? 
-                                         `<a href="${bar.instagram}" target="_blank" style="
-                                             color: #555; 
-                                             text-decoration: underline; 
-                                             font-weight: bold;">Visit Instagram</a>` 
-                                     : '<span style="color: #999;">Website Not Available</span>'
-                                 }
-                             </div>
+                                                            <!-- כפתור למימוש ההטבה (כמו כפתור לייק) -->
+                                        <button class="like-button" data-bar-name="${bar.name}" style="
+                                            padding: 12px 20px; 
+                                            background: linear-gradient(135deg, #333, #555); 
+                                            color: white; 
+                                            border: none; 
+                                            border-radius: 10px; 
+                                            font-size: 14px; 
+                                            cursor: pointer; 
+                                            width: 100%; 
+                                            text-transform: uppercase;
+                                            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+                                            transition: all 0.3s ease-in-out;
+                                        " 
+                                        onmouseover="this.style.background='linear-gradient(135deg, #555, #777)'; this.style.transform='scale(1.05)'" 
+                                        onmouseout="this.style.background='linear-gradient(135deg, #333, #555)'; this.style.transform='scale(1)'"
+                                        onclick="handleLikeClick('${bar.name}')">
+                                            למימוש ההנחה 
+                                        </button>
                      
                              <!-- ניווט למיקום -->
                              <p style="
@@ -271,7 +314,7 @@ const App = () => {
                                  font-weight: bold;">
                                  <a href="${googleMapsLink}" target="_blank" style="
                                      color: #007bff; 
-                                     text-decoration: underline;">Navigate to ${bar.name}</a>
+                                     text-decoration: underline;">Navigate</a>
                              </p>
                          </div>
                      `;
@@ -283,7 +326,7 @@ const App = () => {
                 iconUrl = bar.photo ? `/img/${bar.type.toLowerCase().replace(/\s+/g, '-')}.jpeg` : '/img/default-bar.jpg';
 
                 barIcon = L.divIcon({
-                   html: `<img src="${iconUrl}" style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 2px solid white;" alt="${bar.name}"/>`,
+                   html: `<img src="${iconUrl}" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid white;" alt="${bar.name}"/>`,
                    iconSize: [60, 60],
                    className: 'custom-icon',
                });
@@ -293,111 +336,111 @@ const App = () => {
                // יצירת popupContent רספונסיבי
                 googleMapsLink = `https://www.google.com/maps?q=${bar.location.lat},${bar.location.lng}`;
                 popupContent = `
-    <div style="
-        text-align: center; 
-        font-family: 'Poppins', Arial, sans-serif; 
-        padding: 20px; 
-        background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb); 
-        color: #000; 
-        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5); 
-        max-width: 350px; 
-        border-radius: 20px; 
-        overflow: hidden; 
-        position: relative;
-        animation: popUp 0.6s ease-out;
-    ">
-        <div style="
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.4), transparent); 
-            pointer-events: none;">
-        </div>
-        <h3 style="
-            margin: 0; 
-            font-size: 22px; 
-            font-weight: bold; 
-            color: #000; 
-            text-shadow: none;
-        ">${bar.name}</h3>
-        <div style="
-            margin: 15px 0; 
-            font-size: 16px; 
-            font-weight: 500; 
-            background: rgba(255, 255, 255, 0.8); 
-            padding: 10px; 
-            border-radius: 10px;
-        ">
-            ${bar.website ? 
-                `<a href="${bar.website}" target="_blank" style="
-                    color: #007bff; 
-                    text-decoration: underline; 
-                    font-weight: bold;">להזמנת כרטיסים</a>` 
-                : bar.instagram ? 
-                    `<a href="${bar.instagram}" target="_blank" style="
-                        color: #007bff; 
-                        text-decoration: underline; 
-                        font-weight: bold;">Instagram</a>` 
-                    : '<span style="color: red;">Not Available</span>'
-            }
-        </div>
-        <div style="
-            margin-bottom: 15px; 
-            font-size: 14px; 
-            color: #000; 
-            background: rgba(255, 255, 255, 0.8); 
-            padding: 10px; 
-            border-radius: 10px;">
-            ${bar.description ? `<p>${bar.description}</p>` : ''}
-        </div>
-        <div style="
-            margin-bottom: 15px; 
-            font-size: 14px; 
-            color: #000; 
-            font-weight: bold;">
-            ${bar.date ? `<p>📅 תאריך: ${new Date(bar.date).toLocaleDateString('he-IL', { year: 'numeric', month: 'long', day: 'numeric' })}</p>` : ''}
-        </div>
-        <button class="like-button" data-bar-name="${bar.name}" style="
-            padding: 12px 20px; 
-            background: linear-gradient(135deg, #ff758c, #ff7eb3); 
-            color: white; 
-            border: none; 
-            border-radius: 15px; 
-            font-size: 14px; 
-            cursor: pointer; 
-            width: 100%; 
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
-            transition: all 0.4s ease-in-out;
-        " 
-        onmouseover="this.style.background='linear-gradient(135deg, #ff4a78, #ff758c)'; this.style.transform='scale(1.05)'" 
-        onmouseout="this.style.background='linear-gradient(135deg, #ff758c, #ff7eb3)'; this.style.transform='scale(1)'">
-אני אגיע
-        </button>
-        <p style="
-            margin-top: 15px; 
-            font-size: 14px; 
-            font-weight: bold;">
-            <a href="${googleMapsLink}" target="_blank" style="
-                color: #007bff; 
-                text-decoration: underline;">נווט</a>
-        </p>
-    </div>
+                    <div style="
+                        text-align: center; 
+                        font-family: 'Poppins', Arial, sans-serif; 
+                        padding: 20px; 
+                        background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb); 
+                        color: #000; 
+                        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5); 
+                        max-width: 350px; 
+                        border-radius: 20px; 
+                        overflow: hidden; 
+                        position: relative;
+                        animation: popUp 0.6s ease-out;
+                    ">
+                        <div style="
+                            position: absolute; 
+                            top: 0; 
+                            left: 0; 
+                            width: 100%; 
+                            height: 100%; 
+                            background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.4), transparent); 
+                            pointer-events: none;">
+                        </div>
+                        <h3 style="
+                            margin: 0; 
+                            font-size: 22px; 
+                            font-weight: bold; 
+                            color: #000; 
+                            text-shadow: none;
+                        ">${bar.name}</h3>
+                        <div style="
+                            margin: 15px 0; 
+                            font-size: 16px; 
+                            font-weight: 500; 
+                            background: rgba(255, 255, 255, 0.8); 
+                            padding: 10px; 
+                            border-radius: 10px;
+                        ">
+                            ${bar.website ? 
+                                `<a href="${bar.website}" target="_blank" style="
+                                    color: #007bff; 
+                                    text-decoration: underline; 
+                                    font-weight: bold;">להזמנת כרטיסים</a>` 
+                                : bar.instagram ? 
+                                    `<a href="${bar.instagram}" target="_blank" style="
+                                        color: #007bff; 
+                                        text-decoration: underline; 
+                                        font-weight: bold;">Instagram</a>` 
+                                    : '<span style="color: red;">Not Available</span>'
+                            }
+                        </div>
+                        <div style="
+                            margin-bottom: 15px; 
+                            font-size: 14px; 
+                            color: #000; 
+                            background: rgba(255, 255, 255, 0.8); 
+                            padding: 10px; 
+                            border-radius: 10px;">
+                            ${bar.description ? `<p>${bar.description}</p>` : ''}
+                        </div>
+                        <div style="
+                            margin-bottom: 15px; 
+                            font-size: 14px; 
+                            color: #000; 
+                            font-weight: bold;">
+                            ${bar.date ? `<p>📅 תאריך: ${new Date(bar.date).toLocaleDateString('he-IL', { year: 'numeric', month: 'long', day: 'numeric' })}</p>` : ''}
+                        </div>
+                        <button class="like-button" data-bar-name="${bar.name}" style="
+                            padding: 12px 20px; 
+                            background: linear-gradient(135deg, #ff758c, #ff7eb3); 
+                            color: white; 
+                            border: none; 
+                            border-radius: 15px; 
+                            font-size: 14px; 
+                            cursor: pointer; 
+                            width: 100%; 
+                            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+                            transition: all 0.4s ease-in-out;
+                        " 
+                        onmouseover="this.style.background='linear-gradient(135deg, #ff4a78, #ff758c)'; this.style.transform='scale(1.05)'" 
+                        onmouseout="this.style.background='linear-gradient(135deg, #ff758c, #ff7eb3)'; this.style.transform='scale(1)'">
+                אני אגיע
+                        </button>
+                        <p style="
+                            margin-top: 15px; 
+                            font-size: 14px; 
+                            font-weight: bold;">
+                            <a href="${googleMapsLink}" target="_blank" style="
+                                color: #007bff; 
+                                text-decoration: underline;">נווט</a>
+                        </p>
+                    </div>
 
-    <style>
-        @keyframes popUp {
-            from {
-                transform: scale(0.8);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-    </style>
-`;
+                    <style>
+                        @keyframes popUp {
+                            from {
+                                transform: scale(0.8);
+                                opacity: 0;
+                            }
+                            to {
+                                transform: scale(1);
+                                opacity: 1;
+                            }
+                        }
+                    </style>
+                `;
 
 
 
@@ -418,6 +461,7 @@ const App = () => {
             });
         });
     }, [data]);
+    
 
     // פונקציה לטיפול בלחיצה על כפתור לייק
     const handleLikeClick = async (bar) => {
@@ -427,6 +471,13 @@ const App = () => {
             if(isBarsView)
             {
                 data =await axios.post(`${BASE_API_URL}/bars/${bar.name}/like`);
+                if(bar.id===2)
+                {
+                    const url = bar.website || bar.instagram;  
+                    if (url) {
+                        window.open(url, '_blank');
+                    }
+                }
             }
             else
             {
