@@ -268,26 +268,30 @@ const App = () => {
                      googleMapsLink = `https://www.google.com/maps?q=${bar.lat},${bar.lng}`;
                      
                      popupContent = `
-                                                        <div style="
-                                    text-align: center; 
-                                    font-family: 'Arial', sans-serif; 
-                                    padding: 20px; 
-                                    background: linear-gradient(135deg, #a8dadc, #ffffff), url('student7bg.jpeg'); 
-                                    background-size: cover; 
-                                    background-position: center center;
-                                    color: #333; 
-                                    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); 
-                                    max-width: 100%; 
-                                    width: 350px;
-                                    border-radius: 15px; 
-                                    border: 1px solid #ccc;
-                                    position: relative;
-                                    overflow: hidden;
-                                    box-sizing: border-box;
-                                ">
+                                        <div style="
+    text-align: center; 
+    font-family: 'Arial', sans-serif; 
+    padding: 20px; 
+    background: url('img/student7bg.jpeg'); 
+    background-size: cover; 
+    background-position: center center;
+    color: #333; 
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); 
+    max-width: 100%; 
+    width: 350px;
+    border-radius: 15px; 
+    border: 1px solid #ccc;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+">
                              <!-- תמונה בראש הפופאפ -->
-                             <img src="img/student7real.jpeg" style="width: 120px; height: 80px; margin-bottom: 20px; border-radius: 10px;"/>
-                     
+                      <h3 style="
+                                 margin: 0 0 15px; 
+                                 font-size: 18px; 
+                                 font-weight: bold; 
+                                 color: #333;
+                             "></h3></br></br></br>
                              <!-- שם -->
                              <h3 style="
                                  margin: 0 0 15px; 
