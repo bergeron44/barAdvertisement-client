@@ -204,7 +204,7 @@ const App = () => {
                 `; 
                 }
                 else if (bar.id === 0) {
-                    iconUrl = bar.imageUrl ? `/img/${bar.imageUrl.toLowerCase().replace(/\s+/g, '-')}.jpeg` : '/img/sport.jpg';
+                    iconUrl = bar.imageUrl ? `/img/${bar.imageUrl.toLowerCase().replace(/\s+/g, '-')}.png` : '/img/bengurionuniversity.jpeg';
                 
                     barIcon = L.divIcon({
                         html: `<img src="${iconUrl}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 3px solid white;" alt="University"/>`,
