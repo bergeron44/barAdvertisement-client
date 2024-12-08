@@ -563,6 +563,7 @@ const App = () => {
 
 // עיצוב המפה (רספונסיבי לניידים)
 const mapStyles = {
+    zIndex: '1', /* המפה מתחת להדר */
     width: '100%',
     height: 'calc(100vh - 60px)',
 };
