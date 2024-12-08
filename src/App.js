@@ -207,7 +207,16 @@ const App = () => {
                     iconUrl = bar.imageUrl ? `/img/${bar.imageUrl.toLowerCase().replace(/\s+/g, '-')}.png` : '/img/bengurionuniversity.jpeg';
                 
                     barIcon = L.divIcon({
-                        html: `<img src="${iconUrl}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 3px solid white;" alt="University"/>`,
+                                            html: `<img src="${iconUrl}" 
+                        style="width: 40px; 
+                                height: 40px; 
+                                border-radius: 50%; 
+                                object-fit: cover; 
+                                border: 3px solid white; 
+                                transition: transform 0.3s ease;" 
+                        onmouseover="this.style.transform='scale(1.3)'" 
+                        onmouseout="this.style.transform='scale(1)'"
+                        alt="University"/>`,
                         iconSize: [70, 70],
                         className: 'custom-icon',
                     });
@@ -275,7 +284,7 @@ const App = () => {
                              box-sizing: border-box;
                          ">
                              <!-- תמונה בראש הפופאפ -->
-                             <img src="img/student7.jpeg" style="width: 120px; height: 80px; margin-bottom: 20px; border-radius: 10px;"/>
+                             <img src="img/student7real.jpeg" style="width: 120px; height: 80px; margin-bottom: 20px; border-radius: 10px;"/>
                      
                              <!-- שם -->
                              <h3 style="
