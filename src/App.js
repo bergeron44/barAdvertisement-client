@@ -275,7 +275,7 @@ const App = () => {
                              box-sizing: border-box;
                          ">
                              <!-- תמונה בראש הפופאפ -->
-                          <img src="img/student7.jpeg" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 15px;"/>
+                             <img src="img/student7.jpeg" style="width: 120px; height: 80px; margin-bottom: 20px; border-radius: 10px;"/>
                      
                              <!-- שם -->
                              <h3 style="
@@ -520,9 +520,9 @@ const App = () => {
                     
                 }
                 else
-                    {
+                {
                         alert(`Get Loose ותחפש ברקוד של  ${bar.name} לך לבר `);
-                    }
+                }
             }
             else
             {
