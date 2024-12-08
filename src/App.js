@@ -363,7 +363,7 @@ const App = () => {
             }
             else
             {
-                iconUrl = bar.photo ? `/img/${bar.type.toLowerCase().replace(/\s+/g, '-')}.jpeg` : '/img/default-bar.jpg';
+                iconUrl = bar.photo ? `/img/${bar.photo.toLowerCase().replace(/\s+/g, '-')}.jpeg` : '/img/aguda.png';
 
                 barIcon = L.divIcon({
                    html: `<img src="${iconUrl}" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid white;" alt="${bar.name}"/>`,
