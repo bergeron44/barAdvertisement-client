@@ -25,6 +25,21 @@ const App = () => {
             return eventDate > currentDate; // מחזיר רק אירועים שהתאריך שלהם אחרי התאריך הנוכחי
         });
     };
+    const filterClosestEvents = (events) => {
+        const currentDate = new Date();
+        // סינון אירועים עתידיים
+        const futureEvents = events.filter(event => {
+            const eventDate = new Date(event.date);
+            return eventDate > currentDate;
+        });
+    
+        // מיון לפי תאריך
+        const sortedEvents = futureEvents.sort((a, b) => new Date(a.date) - new Date(b.date));
+    
+        // אם יש פחות מ-20, פשוט מחזירים את כל מה שיש
+        return sortedEvents.slice(0, 20);
+    };
+
 
     // הבאת נתונים מה-API
     const fetchData = async (endpoint) => {
@@ -34,7 +49,7 @@ const App = () => {
             let filteredData = response.data;
             if (!isBarsView) {
                 // אם אנחנו בתצוגת הארועים, נבצע סינון לפי תאריך
-                filteredData = filterEventsByDate(filteredData);
+                filteredData = filterClosestEvents(filteredData);
             }
             setData(filteredData);
         } catch (err) {
@@ -268,23 +283,23 @@ const App = () => {
                      googleMapsLink = `https://www.google.com/maps?q=${bar.lat},${bar.lng}`;
                      
                      popupContent = `
-                                        <div style="
-    text-align: center; 
-    font-family: 'Arial', sans-serif; 
-    padding: 20px; 
-    background: url('img/student7bg.jpeg'); 
-    background-size: cover; 
-    background-position: center center;
-    color: #333; 
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); 
-    max-width: 100%; 
-    width: 350px;
-    border-radius: 15px; 
-    border: 1px solid #ccc;
-    position: relative;
-    overflow: hidden;
-    box-sizing: border-box;
-">
+                             <div style="
+                                    text-align: center; 
+                                    font-family: 'Arial', sans-serif; 
+                                    padding: 20px; 
+                                    background: url('img/student7bg.jpeg'); 
+                                    background-size: cover; 
+                                    background-position: center center;
+                                    color: #333; 
+                                    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); 
+                                    max-width: 100%; 
+                                    width: 350px;
+                                    border-radius: 15px; 
+                                    border: 1px solid #ccc;
+                                    position: relative;
+                                    overflow: hidden;
+                                    box-sizing: border-box;
+                                ">
                              <!-- תמונה בראש הפופאפ -->
                       <h3 style="
                                  margin: 0 0 15px; 
