@@ -37,7 +37,7 @@ const App = () => {
         const sortedEvents = futureEvents.sort((a, b) => new Date(a.date) - new Date(b.date));
     
         // אם יש פחות מ-20, פשוט מחזירים את כל מה שיש
-        return sortedEvents.slice(0, 20);
+        return sortedEvents.slice(0, 10);
     };
 
 
