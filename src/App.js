@@ -219,7 +219,7 @@ const App = () => {
                 `; 
                 }
                 else if (bar.id === 0) {
-                    iconUrl = bar.imageUrl ? `/img/${bar.imageUrl.toLowerCase().replace(/\s+/g, '-')}.png` : '/img/bengurionuniversity.jpeg';
+                    iconUrl = bar.imageUrl ? `/img/${bar.imageUrl.toLowerCase().replace(/\s+/g, '-')}.jpeg` : '/img/bengurionuniversity.jpeg';
                 
                     barIcon = L.divIcon({
                                             html: `<img src="${iconUrl}" 
