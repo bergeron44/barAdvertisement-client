@@ -410,7 +410,7 @@ const App = () => {
                         text-align: center; 
                         font-family: 'Poppins', Arial, sans-serif; 
                         padding: 20px; 
-                        background: url('img/agudabest2.jpeg'); 
+                        background: url('img/agudabest3.jpeg'); 
                         background-size: cover; 
                         background-position: center center;
                         color: #000; 
@@ -421,6 +421,7 @@ const App = () => {
                         position: relative;
                         animation: popUp 0.6s ease-out;
                     ">
+                    <br/><br/><br/><br/><br/>
                         <div style="
                             position: absolute; 
                             top: 0; 
