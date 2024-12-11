@@ -410,7 +410,9 @@ const App = () => {
                         text-align: center; 
                         font-family: 'Poppins', Arial, sans-serif; 
                         padding: 20px; 
-                        background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb); 
+                        background: url('img/agudabest2.jpeg'); 
+                        background-size: cover; 
+                        background-position: center center;
                         color: #000; 
                         box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5); 
                         max-width: 350px; 
