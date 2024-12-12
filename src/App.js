@@ -102,6 +102,7 @@ const App = () => {
                        iconSize: [60, 60],
                        className: 'custom-icon',
                    });  
+
                    
        
                     marker = L.marker([bar.lat, bar.lng], { icon: barIcon }).addTo(mapRef.current);
