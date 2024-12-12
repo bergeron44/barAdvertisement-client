@@ -95,7 +95,7 @@ const App = () => {
             {
                 if(bar.id===1)
                 {
-                    iconUrl = bar.imageUrl ? `/img/${bar.name.toLowerCase().replace(/\s+/g, '-')}.jpeg` : '/img/sport.jpg';
+                    iconUrl = bar.imageUrl ? `/img/${bar.imageUrl.toLowerCase().replace(/\s+/g, '-')}.jpeg` : '/img/sport.jpg';
 
                     barIcon = L.divIcon({
                        html: `<img src="${iconUrl}" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid white;" alt="${bar.name}"/>`,
