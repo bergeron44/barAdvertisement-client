@@ -95,7 +95,7 @@ const App = () => {
             {
                 if(bar.id===1)
                 {
-                    iconUrl = bar.imageUrl ? `/img/${bar.imageUrl.toLowerCase().replace(/\s+/g, '-')}.jpeg` : '/img/sport.jpg';
+                    iconUrl = bar.imageUrl ? `/img/${bar.imageUrl.toLowerCase().replace(/\s+/g, '-')}` : '/img/sport.jpg';
 
                     barIcon = L.divIcon({
                        html: `<img src="${iconUrl}" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid white;" alt="${bar.name}"/>`,
@@ -221,7 +221,7 @@ const App = () => {
                 `; 
                 }
                 else if (bar.id === 0) {
-                    iconUrl = bar.imageUrl ? `/img/${bar.imageUrl.toLowerCase().replace(/\s+/g, '-')}.jpeg` : '/img/bengurionuniversity.jpeg';
+                    iconUrl = bar.imageUrl ? `/img/${bar.imageUrl.toLowerCase().replace(/\s+/g, '-')}` : '/img/bengurionuniversity.jpeg';
                 
                     barIcon = L.divIcon({
                                             html: `<img src="${iconUrl}" 
@@ -271,7 +271,7 @@ const App = () => {
                 }
                 else
                 {
-                    iconUrl = bar.imageUrl ? `/img/${bar.imageUrl.toLowerCase().replace(/\s+/g, '-')}.jpeg` : '/img/sport.jpg';
+                    iconUrl = bar.imageUrl ? `/img/${bar.imageUrl.toLowerCase().replace(/\s+/g, '-')}` : '/img/sport.jpg';
 
                     barIcon = L.divIcon({
                         html: `<img src="${iconUrl}" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid white;" alt="${bar.name}"/>`,
@@ -395,7 +395,7 @@ const App = () => {
             }
             else
             {
-                iconUrl = bar.photo ? `/img/${bar.photo.toLowerCase().replace(/\s+/g, '-')}.jpeg` : '/img/aguda.png';
+                iconUrl = bar.photo ? `/img/${bar.photo.toLowerCase().replace(/\s+/g, '-')}` : '/img/aguda.png';
 
                 barIcon = L.divIcon({
                    html: `<img src="${iconUrl}" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid white;" alt="${bar.name}"/>`,
