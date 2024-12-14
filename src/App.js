@@ -14,7 +14,7 @@ const App = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [isBarsView, setIsBarsView] = useState(true);
-
+    const [isFirstEnter, setFirstEnter] = useState(true);
 
     // הבאת נתונים מה-API
       // פונקציה לסינון הארועים לפי תאריך
@@ -45,6 +45,13 @@ const App = () => {
     const fetchData = async (endpoint) => {
         setLoading(true);
         try {
+            if(isFirstEnter)
+            {
+                const data =await axios.post(`${BASE_API_URL}/bars/benGurionUniversity/like`);
+                console.log(data);
+                setFirstEnter(false);
+            }
+            console.log(isFirstEnter);
             const response = await axios.get(`${BASE_API_URL}/${endpoint}`);
             let filteredData = response.data;
             if (!isBarsView) {
@@ -52,6 +59,7 @@ const App = () => {
                 filteredData = filterClosestEvents(filteredData);
             }
             setData(filteredData);
+            
         } catch (err) {
             setError('Failed to fetch data. Please try again.');
         } finally {
