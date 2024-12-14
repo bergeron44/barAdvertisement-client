@@ -45,12 +45,14 @@ const App = () => {
     const fetchData = async (endpoint) => {
         setLoading(true);
         try {
+            /*
             if(isFirstEnter)
             {
                 const data =await axios.post(`${BASE_API_URL}/bars/benGurionUniversity/like`);
                 console.log(data);
                 setFirstEnter(false);
             }
+             */
             console.log(isFirstEnter);
             const response = await axios.get(`${BASE_API_URL}/${endpoint}`);
             let filteredData = response.data;
@@ -66,7 +68,25 @@ const App = () => {
             setLoading(false);
         }
     };
+     // שליחת בקשת POST פעם אחת בכניסה לאתר
+     
+     useEffect(() => {
+        const sendInitialLike = async () => {
+            try {
+                if (isFirstEnter) {
+                    setFirstEnter(false); // מונע בקשות נוספות
+                    const data=await axios.post(`${BASE_API_URL}/bars/benGurionUniversity/like`);
+                    console.log("Initial like sent successfully!");
+                    console.log(data.data);
+                }
+            } catch (err) {
+                console.error("Failed to send initial like:", err);
+            }
+        };
 
+        sendInitialLike();
+    }, []); // useEffect רץ רק פעם אחת כאשר הקומפוננטה נטענת
+     
     // טעינת נתונים לפי מצב (ברים או אירועים)
     useEffect(() => {
         const endpoint = isBarsView ? 'bars' : 'events';
