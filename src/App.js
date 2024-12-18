@@ -373,7 +373,7 @@ const App = () => {
                                     text-align: center; 
                                     font-family: 'Arial', sans-serif; 
                                     padding: 20px; 
-                                    background: url('student7bg.png'); 
+                                    background: url('img/student7bg.png'); 
                                     background-size: cover; 
                                     background-position: center center;
                                     color: #333; 
