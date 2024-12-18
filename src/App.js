@@ -7,6 +7,62 @@ import axios from 'axios';
 //const BASE_API_URL = 'https://bangyourhead-server.onrender.com/api'; 
 const BASE_API_URL = 'https://final-project-server-sk27.onrender.com/api'; 
 
+const locations = {
+    "Beer Sheva": { lat: 31.252121, lng: 34.786609 },
+    "Ben Gurion University of the Negev": { lat: 31.261436,lng: 34.799552},
+    "Zalman Aranne Central Library": { lat: 31.262074, lng: 34.800803 },
+    "Kreitman Building": { lat: 31.262092,lng: 34.802325 },
+    "Mexicani Ben Gurion": { lat: 31.261990,lng: 34.804332},
+    "The student house building 70": { lat: 31.263123, lng: 34.801976 },
+    "Building 90 Ben Gurion University": { lat: 31.264854,  lng: 34.803088 },
+    "Husidman Center for science-seeking youth": { lat: 31.261327, lng: 34.801319 },
+    "Parking 1 Ben Gurion University": { lat: 31.263488, lng: 34.799791},
+    "Sports Center Ben-Gurion University": { lat: 31.261853, lng:  34.807128 },
+    "Gate of Mexico Ben Gurion University": { lat: 31.262344, lng: 34.805657},
+    "Building 34 Ben Gurion University": { lat: 31.262046, lng: 34.803392 },
+    "Ben Gurion Soroka Gate": { lat: 31.261276 , lng: 34.801194 },
+
+    "Writers Park": { lat: 31.255490, lng: 34.788592},
+    "Block": { lat: 31.259226, lng: 34.797065},
+    "Soroka Medical Center": { lat: 31.258022,lng: 34.800301},
+    "Performing Arts Center Beer Sheva": { lat: 31.251716, lng: 34.797173},
+    "The old city of Beer Sheva": { lat: 31.239323, lng: 34.790232},
+    "Carasso Science Park": { lat: 31.241991, lng: 34.786072},
+    "Ofer Grand Canyon": { lat: 31.251187, lng: 34.771704},
+    "Shchuna B": { lat: 31.255540, lng: 34.787802},
+    "Shchuna D": { lat: 31.264954, lng:  34.795510},
+    "Shchuna C": { lat: 31.253914, lng: 34.805580},
+    "Big Beer Sheva": { lat: 31.245246, lng: 34.811500},
+    "Gav-Yam Negev Advanced Technologies Park": { lat: 31.265103, lng: 34.814307},
+    "Ramot": { lat: 31.273787,lng: 34.811362},
+    "Turner Stadium": { lat: 31.274092,lng: 34.779327}, 
+    "Forum club": { lat: 31.221058,  lng: 34.803028},
+    "Beer Sheva River Park": { lat: 31.237292,  lng: 34.828784},
+    "Beer Sheva Youth Center": { lat: 31.241839 ,  lng: 34.788323},
+    
+    
+    "Rega B Park Beer Sheva": { lat: 31.257014, lng: 34.794165},
+    "Bengi": { lat: 31.264579, lng: 34.797307},
+    "Lee Office": { lat: 31.264396, lng: 34.798339},
+    "BarGiora": { lat: 31.2612,lng: 34.7925},
+    "Ashanhazman": { lat: 31.237619,lng: 34.788384},
+    "SassonBar": { lat: 31.2401,lng: 34.7886},
+    "Mileva": { lat: 31.2617,lng: 34.7965},
+    "BarBaSaba": { lat: 31.2476,lng: 34.7988},
+    "JEMS": { lat: 31.2634,lng: 34.8106},
+    "nano": { lat: 31.2583,lng: 34.7932},
+    "ringelblum13": { lat: 31.2675,lng: 34.8002},
+    "מיני שני": { lat: 31.258708,lng: 34.794616},
+   "החומוס של טחינה": { lat: 31.26511,lng: 34.80084},
+   "Friends": { lat: 31.258293,lng:34.794646},
+   "Pub Giza": { lat: 31.254511,lng: 34.790957},
+   "Zalame ACB": { lat: 31.243063,lng: 34.804604},
+   "Château D'Or": { lat: 31.240597,lng: 34.788716},
+   "Roots Bar & Kitchen": { lat: 31.267882,lng: 34.800137},
+   "halutz 33": { lat: 31.238207,lng: 34.788143},
+};
+
+
 const App = () => {
     const mapContainerRef = useRef(null);
     const mapRef = useRef(null);
@@ -317,7 +373,7 @@ const App = () => {
                                     text-align: center; 
                                     font-family: 'Arial', sans-serif; 
                                     padding: 20px; 
-                                    background: url('img/student7bg.jpeg'); 
+                                    background: url('student7bg.png'); 
                                     background-size: cover; 
                                     background-position: center center;
                                     color: #333; 
@@ -423,8 +479,7 @@ const App = () => {
             }
             else
             {
-                iconUrl = bar.photo ? `/img/${bar.photo.toLowerCase().replace(/\s+/g, '-')}` : '/img/aguda.png';
-
+                iconUrl = bar.photo && bar.photo.trim() !== ""  ? `/img/${bar.photo.toLowerCase().replace(/\s+/g, '-')}`   : (bar.type && bar.type.trim() !== ""  ? `/img/type/${bar.type.toLowerCase().replace(/\s+/g, '-')}.jpeg`  : '/img/aguda.png');
                 barIcon = L.divIcon({
                    html: `<img src="${iconUrl}" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid white;" alt="${bar.name}"/>`,
                    iconSize: [60, 60],
@@ -440,7 +495,7 @@ const App = () => {
                         text-align: center; 
                         font-family: 'Poppins', Arial, sans-serif; 
                         padding: 20px; 
-                        background: url('img/agudabest3.jpeg'); 
+                        background: url('img/agudabest3.png'); 
                         background-size: cover; 
                         background-position: center center;
                         color: #000; 
