@@ -74,12 +74,31 @@ const App = () => {
 
     // הבאת נתונים מה-API
       // פונקציה לסינון הארועים לפי תאריך
-      const filterEventsByDate = (events) => {
+      const filterAndSortEvents = (events) => {
         const currentDate = new Date();
-        return events.filter(event => {
+        const twoWeeksLater = new Date(currentDate);
+        twoWeeksLater.setDate(currentDate.getDate() + 21);
+    
+        // סינון האירועים שנמצאים בטווח השבועיים הקרובים
+        const filteredEvents = events.filter(event => {
             const eventDate = new Date(event.date);
-            return eventDate > currentDate; // מחזיר רק אירועים שהתאריך שלהם אחרי התאריך הנוכחי
+            return eventDate >= currentDate && eventDate <= twoWeeksLater;
         });
+        
+        // מיפוי לפי קורדינטות ובחירת האירוע עם התאריך הקרוב ביותר לכל מיקום
+        const eventsByLocation = new Map();
+    
+        filteredEvents.forEach(event => {
+            const locationKey = `${event.latitude},${event.longitude}`;
+            const existingEvent = eventsByLocation.get(locationKey);
+    
+            if (!existingEvent || new Date(event.date) < new Date(existingEvent.date)) {
+                eventsByLocation.set(locationKey, event); // שומר את האירוע הקרוב ביותר
+            }
+        });
+    
+        // המרה חזרה למערך של אירועים
+        return filteredEvents;
     };
     const filterClosestEvents = (events) => {
         const currentDate = new Date();
@@ -93,6 +112,7 @@ const App = () => {
         const sortedEvents = futureEvents.sort((a, b) => new Date(a.date) - new Date(b.date));
     
         // אם יש פחות מ-20, פשוט מחזירים את כל מה שיש
+        console.log(sortedEvents);
         return sortedEvents.slice(0, 10);
     };
 
