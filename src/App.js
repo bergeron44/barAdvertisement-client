@@ -76,15 +76,15 @@ const App = () => {
       // פונקציה לסינון הארועים לפי תאריך
       const filterAndSortEvents = (events) => {
         const currentDate = new Date();
-        const twoWeeksLater = new Date(currentDate);
-        twoWeeksLater.setDate(currentDate.getDate() + 21);
+        const thirtyDaysLater = new Date(currentDate);
+        thirtyDaysLater.setDate(currentDate.getDate() + 30); // מוסיף 30 ימים לתאריך הנוכחי
     
-        // סינון האירועים שנמצאים בטווח השבועיים הקרובים
+        // סינון האירועים שמתקיימים תוך 30 ימים מהתאריך הנוכחי ושטרם עברו
         const filteredEvents = events.filter(event => {
             const eventDate = new Date(event.date);
-            return eventDate >= currentDate && eventDate <= twoWeeksLater;
+            return eventDate > currentDate && eventDate <= thirtyDaysLater;
         });
-        
+    
         // מיפוי לפי קורדינטות ובחירת האירוע עם התאריך הקרוב ביותר לכל מיקום
         const eventsByLocation = new Map();
     
@@ -98,8 +98,9 @@ const App = () => {
         });
     
         // המרה חזרה למערך של אירועים
-        return filteredEvents;
+        return Array.from(eventsByLocation.values());
     };
+    
     const filterClosestEvents = (events) => {
         const currentDate = new Date();
         // סינון אירועים עתידיים
@@ -134,7 +135,7 @@ const App = () => {
             let filteredData = response.data;
             if (!isBarsView) {
                 // אם אנחנו בתצוגת הארועים, נבצע סינון לפי תאריך
-                filteredData = filterClosestEvents(filteredData);
+                filteredData = filterAndSortEvents(filteredData);
             }
             setData(filteredData);
             
