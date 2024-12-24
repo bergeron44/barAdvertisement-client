@@ -71,35 +71,27 @@ const App = () => {
     const [error, setError] = useState(null);
     const [isBarsView, setIsBarsView] = useState(true);
     const [isFirstEnter, setFirstEnter] = useState(true);
-
-    // הבאת נתונים מה-API
-      // פונקציה לסינון הארועים לפי תאריך
-      const filterAndSortEvents = (events) => {
+    
+    const filterAndSortEvents = (events) => {
         const currentDate = new Date();
         const thirtyDaysLater = new Date(currentDate);
-        thirtyDaysLater.setDate(currentDate.getDate() + 30); // מוסיף 30 ימים לתאריך הנוכחי
+        thirtyDaysLater.setDate(currentDate.getDate() + 30);
     
-        // סינון האירועים שמתקיימים תוך 30 ימים מהתאריך הנוכחי ושטרם עברו
+        console.log("Current Date:", currentDate);
+        console.log("Thirty Days Later:", thirtyDaysLater);
+    
+        // סינון האירועים שמתקיימים תוך 30 ימים
         const filteredEvents = events.filter(event => {
             const eventDate = new Date(event.date);
+            console.log("Event Date:", eventDate);
             return eventDate > currentDate && eventDate <= thirtyDaysLater;
         });
+        console.log("Filtered Events:", filteredEvents);
     
-        // מיפוי לפי קורדינטות ובחירת האירוע עם התאריך הקרוב ביותר לכל מיקום
-        const eventsByLocation = new Map();
-    
-        filteredEvents.forEach(event => {
-            const locationKey = `${event.latitude},${event.longitude}`;
-            const existingEvent = eventsByLocation.get(locationKey);
-    
-            if (!existingEvent || new Date(event.date) < new Date(existingEvent.date)) {
-                eventsByLocation.set(locationKey, event); // שומר את האירוע הקרוב ביותר
-            }
-        });
-    
-        // המרה חזרה למערך של אירועים
-        return Array.from(eventsByLocation.values());
+        // החזרת מערך האירועים
+        return filteredEvents;
     };
+    
     
     const filterClosestEvents = (events) => {
         const currentDate = new Date();
