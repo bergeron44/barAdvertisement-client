@@ -758,6 +758,7 @@ const App = () => {
     
 
     // פונקציה לטיפול בלחיצה על כפתור לייק
+    /*
     const handleLikeClick = async (bar) => {
         try {
             console.log(bar);
@@ -798,7 +799,32 @@ const App = () => {
             console.error('Error while liking the bar:', error);
         }
     };
-
+*/
+const handleLikeClick = async (bar) => {
+    try {
+        console.log(bar);
+        var data;
+        if (isBarsView) {
+            data = await axios.post(`${BASE_API_URL}/bars/${bar.name}/like`);
+            if (bar.id === 2 || bar.id === 3) {
+                const url = bar.website || bar.instagram;
+                if (url) {
+                    // השתמש באירוע ישיר כדי לוודא שהלינק נפתח
+                    window.open(url, '_blank', 'noopener,noreferrer');
+                } else {
+                    alert('No URL provided');
+                }
+            } else {
+                alert(`Get Loose ותחפש ברקוד של  ${bar.name} לך לבר `);
+            }
+        } else {
+            data = await axios.post(`${BASE_API_URL}/events/${bar._id}/like`);
+        }
+        console.log(data);
+    } catch (error) {
+        console.error('Error while liking the bar:', error);
+    }
+};
     const toggleView = () => {
         setIsBarsView(!isBarsView);
     };
