@@ -366,6 +366,129 @@ const App = () => {
                     `;
                 
                 }
+                else if(bar.id===3)
+                {
+                        iconUrl = bar.imageUrl ? `/img/${bar.imageUrl.toLowerCase().replace(/\s+/g, '-')}` : '/img/sport.jpg';
+    
+                        barIcon = L.divIcon({
+                            html: `<img src="${iconUrl}" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid white;" alt="${bar.name}"/>`,
+                            iconSize: [40, 40], // כאן קטנו את האייקון
+                            className: 'custom-icon',
+                         });
+                         
+                         marker = L.marker([bar.lat, bar.lng], { icon: barIcon }).addTo(mapRef.current);
+                         
+                         // יצירת popupContent חדש עם סדר חדש
+                         googleMapsLink = `https://www.google.com/maps?q=${bar.lat},${bar.lng}`;
+                         
+                         popupContent = `
+                                 <div style="
+                                        text-align: center; 
+                                        font-family: 'Arial', sans-serif; 
+                                        padding: 20px; 
+                                        background: url('img/agudabest3.png'); 
+                                        background-size: cover; 
+                                        background-position: center center;
+                                        color: #333; 
+                                        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); 
+                                        max-width: 100%; 
+                                        width: 350px;
+                                        border-radius: 15px; 
+                                        border: 1px solid #ccc;
+                                        position: relative;
+                                        overflow: hidden;
+                                        box-sizing: border-box;
+                                    ">
+                                 <!-- תמונה בראש הפופאפ -->
+                          <h3 style="
+                                     margin: 0 0 15px; 
+                                     font-size: 18px; 
+                                     font-weight: bold; 
+                                     color: #333;
+                                 "></h3></br></br></br>
+                                 <!-- שם -->
+                                 <h3 style="
+                                     margin: 0 0 15px; 
+                                     font-size: 18px; 
+                                     font-weight: bold; 
+                                     color: #333;
+                                 ">${bar.name}</h3>
+                         
+                                 <!-- הנחות -->
+                                 <div style="
+                                     font-size: 14px; 
+                                     color: #d9534f; 
+                                     margin-bottom: 10px; 
+                                     font-weight: bold;">
+                                     <b>!מבצעים</b>
+                                 </div>
+                                 
+                                <div style="
+                                            font-size: 12px; 
+                                            color: #333; 
+                                            margin-bottom: 15px; 
+                                            padding: 10px; 
+                                            border-radius: 10px; 
+                                            border: 1px solid #ddd;
+                                            background-color: white; /* רקע לבן */
+                                        ">
+                                            ${bar.discountOne ? `<p style="
+                                                margin: 5px 0; 
+                                                font-weight: bold; 
+                                                font-size: 14px; 
+                                                color: #e91e63; /* צבע אדום-ורוד */
+                                                text-transform: uppercase;
+                                            ">${bar.discountOne}</p>` : ''}
+                                            ${bar.discountSec ? `<p style="
+                                                margin: 5px 0; 
+                                                font-weight: normal; 
+                                                font-size: 14px; 
+                                                color: #9c27b0; /* צבע ארגמן */
+                                                text-transform: uppercase;
+                                            ">${bar.discountSec}</p>` : ''}
+                                            ${bar.discountThi ? `<p style="
+                                                margin: 5px 0; 
+                                                font-weight: normal; 
+                                                font-size: 14px; 
+                                                color: #f06292; /* צבע ורוד חזק */
+                                                text-transform: uppercase;
+                                            ">${bar.discountThi}</p>` : ''}
+                                        </div>
+                         
+                                                                <!-- כפתור למימוש ההטבה (כמו כפתור לייק) -->
+                                            <button class="like-button" data-bar-name="${bar.name}" style="
+                                                padding: 12px 20px; 
+                                                background: linear-gradient(135deg, #333, #555); 
+                                                color: white; 
+                                                border: none; 
+                                                border-radius: 10px; 
+                                                font-size: 14px; 
+                                                cursor: pointer; 
+                                                width: 100%; 
+                                                text-transform: uppercase;
+                                                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+                                                transition: all 0.3s ease-in-out;
+                                            " 
+                                            onmouseover="this.style.background='linear-gradient(135deg, #555, #777)'; this.style.transform='scale(1.05)'" 
+                                            onmouseout="this.style.background='linear-gradient(135deg, #333, #555)'; this.style.transform='scale(1)'"
+                                            onclick="handleLikeClick('${bar.name}')">
+                                                למימוש ההנחה 
+                                            </button>
+                         
+                                 <!-- ניווט למיקום -->
+                                 <p style="
+                                     margin-top: 15px; 
+                                     font-size: 12px; 
+                                     color: #333; 
+                                     font-weight: bold;">
+                                     <a href="${googleMapsLink}" target="_blank" style="
+                                         color: #007bff; 
+                                         text-decoration: underline;">Navigate</a>
+                                 </p>
+                             </div>
+                         `;
+                    
+                }
                 else
                 {
                     iconUrl = bar.imageUrl ? `/img/${bar.imageUrl.toLowerCase().replace(/\s+/g, '-')}` : '/img/sport.jpg';
@@ -645,11 +768,20 @@ const App = () => {
                 if(bar.id===2)
                 {
                     const url = bar.website || bar.instagram;  
+                    alert(url);
                     if (url) {
                         window.open(url, '_blank');
                     }
                     
                 }
+                else if(bar.id===3)
+                    {
+                        const url = bar.website || bar.instagram;  
+                        if (url) {
+                            window.open(url, '_blank');
+                        }
+                        
+                    }
                 else
                 {
                         alert(`Get Loose ותחפש ברקוד של  ${bar.name} לך לבר `);
@@ -681,7 +813,7 @@ const App = () => {
         <div style={{ position: 'relative' }}>
             <header style={headerStyles}>
             <button onClick={toggleView} style={toggleButtonStyles}>
-                    {isBarsView ? ' Top 10 לארועים' : 'Top 20 להנחות'}
+                    {isBarsView ? ' לארועים' : ' להנחות'}
                 </button>
                 <button onClick={handlePhoneClick} style={phoneButtonStyles}>
                       📞
@@ -698,6 +830,20 @@ const mapStyles = {
     width: '100%',
     height: 'calc(100vh - 60px)',
 };
+
+const mapButtonStyles = `
+    .leaflet-control-zoom {
+        position: absolute;
+        bottom: 20px; /* מיקום מלמטה */
+        left: 10px; /* מיקום משמאל */
+        z-index: 1000; /* מבטיח שהכפתורים יהיו מעל למפה */
+    }
+`;
+
+// הוספת ה-CSS למסמך
+const styleElement = document.createElement("style");
+styleElement.textContent = mapButtonStyles;
+document.head.appendChild(styleElement);
 
 // עיצוב כפתור מעבר בין תצוגות (רספונסיבי)
 const toggleButtonStyles = {
@@ -728,7 +874,7 @@ const phoneButtonStyles = {
     fontSize: '20px',             // Small font size
     position: 'absolute',         // Position relative to the container
     top: '10px',                  // Top margin (higher up)
-    right: '40px',                // Right margin (right corner)
+    right: '1px',                // Right margin (right corner)
     zIndex: '10',                 // Ensures the button is above other elements
   };
 
@@ -736,18 +882,19 @@ const phoneButtonStyles = {
 const headerStyles = {
     position: 'fixed', /* שמירה על המיקום */
     textAlign: 'center',
-    padding: '0',
-    backgroundImage: 'url("/img/logo.png")',
-    backgroundSize: '60%',  
+    backgroundImage: 'url("/img/newlogo.png")',
+    backgroundSize: 'cover',  /* עדכון ל-cover כדי שהרקע יכסה הכל */
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
     color: 'white',
     height: '60px',
     width: '100%',
     fontWeight: 'bold',
-    position: 'relative',       // מוודא שהכפתור יוכל להיות ממוקם יחסית לכותרת
-    fontSize: '24px',           // גודל גופן של הכותרת
-    paddingLeft: '40px', 
+    fontSize: '24px',  /* גודל גופן של הכותרת */
+    zIndex: 10, /* מבטיח שה-header מעל המפה */
+    display: 'flex', /* שימוש ב-flex עבור יישור הכותרת */
+    alignItems: 'center', /* יישור אנכי */
+    justifyContent: 'center', /* יישור אופקי */
 };
 
 export default App;
