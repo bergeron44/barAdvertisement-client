@@ -804,15 +804,16 @@ const handleLikeClick = async (bar) => {
     try {
         console.log(bar);
         var data;
+
         if (isBarsView) {
             data = await axios.post(`${BASE_API_URL}/bars/${bar.name}/like`);
+
             if (bar.id === 2 || bar.id === 3) {
                 const url = bar.website || bar.instagram;
                 if (url) {
-                    // השתמש באירוע ישיר כדי לוודא שהלינק נפתח
-                    window.open(url, '_blank', 'noopener,noreferrer');
+                    window.location.href = url; // הפניה ישירה לכתובת ה-URL
                 } else {
-                    alert('No URL provided');
+                    alert("אין קישור זמין עבור הבר הזה.");
                 }
             } else {
                 alert(`Get Loose ותחפש ברקוד של  ${bar.name} לך לבר `);
@@ -820,6 +821,7 @@ const handleLikeClick = async (bar) => {
         } else {
             data = await axios.post(`${BASE_API_URL}/events/${bar._id}/like`);
         }
+
         console.log(data);
     } catch (error) {
         console.error('Error while liking the bar:', error);
