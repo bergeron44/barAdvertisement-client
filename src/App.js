@@ -916,7 +916,7 @@ const App = () => {
         <div style={{ position: 'relative' }}>
             <header style={headerStyles}>
             <button onClick={toggleView} style={toggleButtonStyles}>
-                    {isBarsView ? ' לארועים' : ' להנחות'}
+                    {isBarsView ? ' לאירועים' : ' להנחות'}
                 </button>
                 <button onClick={handlePhoneClick} style={phoneButtonStyles}>
                       📞
