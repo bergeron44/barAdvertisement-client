@@ -907,6 +907,13 @@ const App = () => {
         }
     };
 
+    const handleWhatsAppClick = () => {
+        const phoneNumber = '972547456817'; // פורמט בינלאומי (לישראל 972) ללא 0 מוביל
+        const message = encodeURIComponent('שלום! רציתי לשוחח איתך.');
+        const url = `https://wa.me/${phoneNumber}?text=${message}`;
+        window.open(url, '_blank'); // פתיחת הקישור בלשונית חדשה
+      };
+
     
 
     if (loading) return <div>Loading...</div>;
@@ -918,7 +925,7 @@ const App = () => {
             <button onClick={toggleView} style={toggleButtonStyles}>
                     {isBarsView ? ' לאירועים' : ' להנחות'}
                 </button>
-                <button onClick={handlePhoneClick} style={phoneButtonStyles}>
+                <button onClick={handleWhatsAppClick} style={phoneButtonStyles}>
                       📞
                 </button>
             </header>
