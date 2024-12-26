@@ -359,13 +359,13 @@ const App = () => {
                             font-size: 20px; 
                             font-weight: bold; 
                             color: #007bff;
-                        ">הדעה שלך חשובה לנו מאוד</h3>
+                        ">! הדעה שלך חשובה לנו מאוד !</h3>
                         
                         <p style="
                             margin-bottom: 20px; 
                             font-size: 14px; 
                             color: #555;
-                        ">  תרשם ואולי תזכה בפרס מטורף </p>
+                        ">  🎁 ! הרשם וקבל הטבה השקה עלינו  🎁</p>
                 
                         <!-- טופס חוות דעת -->
                       <form id="feedbackForm" style="display: flex; flex-direction: column; align-items: center; width: 80%; margin: 0 auto;">
