@@ -213,7 +213,7 @@ const App = () => {
                                     text-align: center; 
                                     font-family: 'Arial', sans-serif; 
                                     padding: 20px; 
-                                    background: url('img/getloosecard.png'); 
+                                    background: url('img/getloosecard5.png'); 
                                     background-size: cover; 
                                     background-position: center center;
                                     color: #333; 
@@ -225,7 +225,7 @@ const App = () => {
                                     position: relative;
                                     overflow: hidden;
                                     box-sizing: border-box;
-                                "><br/><br/>
+                                "><br/><br/><br/>
                         <h3 style="
                             margin: 0 0 15px; 
                             font-size: 18px; 
@@ -359,13 +359,13 @@ const App = () => {
                             font-size: 20px; 
                             font-weight: bold; 
                             color: #007bff;
-                        ">הדעה שלך חשובה לנו</h3>
+                        ">הדעה שלך חשובה לנו מאוד</h3>
                         
                         <p style="
                             margin-bottom: 20px; 
                             font-size: 14px; 
                             color: #555;
-                        "> שפוך כמה מילים</p>
+                        ">  תרשם ואולי תזכה בפרס מטורף </p>
                 
                         <!-- טופס חוות דעת -->
                       <form id="feedbackForm" style="display: flex; flex-direction: column; align-items: center; width: 80%; margin: 0 auto;">
