@@ -165,6 +165,7 @@ const App = () => {
     // טעינת המפה והוספת המרקרים
     useEffect(() => {
         window.handleLikeClick = handleLikeClick;
+        window.handleFormSubmit=handleFormSubmit;
         if (!mapContainerRef.current) return;
         
         // הסרת מפה קיימת במקרה שהיא נטענה כבר
@@ -195,7 +196,7 @@ const App = () => {
                     iconUrl = bar.imageUrl ? `/img/${bar.imageUrl.toLowerCase().replace(/\s+/g, '-')}` : '/img/sport.jpg';
 
                     barIcon = L.divIcon({
-                       html: `<img src="${iconUrl}" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid white;" alt="${bar.name}"/>`,
+                       html: `<img src="${iconUrl}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid white;" alt="${bar.name}"/>`,
                        iconSize: [60, 60],
                        className: 'custom-icon',
                    });  
@@ -321,16 +322,16 @@ const App = () => {
                     iconUrl = bar.imageUrl ? `/img/${bar.imageUrl.toLowerCase().replace(/\s+/g, '-')}` : '/img/bengurionuniversity.jpeg';
                 
                     barIcon = L.divIcon({
-                                            html: `<img src="${iconUrl}" 
-                        style="width: 40px; 
-                                height: 40px; 
-                                border-radius: 50%; 
-                                object-fit: cover; 
-                                border: 3px solid white; 
-                                transition: transform 0.3s ease;" 
-                        onmouseover="this.style.transform='scale(1.3)'" 
-                        onmouseout="this.style.transform='scale(1)'"
-                        alt="University"/>`,
+                        html: `<img src="${iconUrl}" 
+                            style="width: 60px; 
+                                    height: 60px; 
+                                    border-radius: 50%; 
+                                    object-fit: cover; 
+                                    border: 3px solid white; 
+                                    transition: transform 0.3s ease;" 
+                            onmouseover="this.style.transform='scale(1.3)'" 
+                            onmouseout="this.style.transform='scale(1)'"
+                            alt="University"/>`,
                         iconSize: [70, 70],
                         className: 'custom-icon',
                     });
@@ -354,17 +355,45 @@ const App = () => {
                             font-size: 20px; 
                             font-weight: bold; 
                             color: #007bff;
-                        ">University Campus</h3>
+                        ">הדעה שלך חשובה לנו</h3>
                         
                         <p style="
                             margin-bottom: 20px; 
                             font-size: 14px; 
                             color: #555;
-                        "> האוניברסיטה</p>
+                        "> שפוך כמה מילים</p>
                 
+                        <!-- טופס חוות דעת -->
+                      <form id="feedbackForm" style="display: flex; flex-direction: column; align-items: center; width: 80%; margin: 0 auto;">
+    <input type="email" id="email" name="email" placeholder="הכנס את המייל שלך" required
+           style="width: 80%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc;">
+    
+    <textarea id="feedback" name="feedback" placeholder="הכנס את חוות הדעת שלך" required
+              style="width: 80%; padding: 10px; height: 100px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc;"></textarea>
+    
+    <button type="button" 
+            style="padding: 12px 20px; 
+                   background: linear-gradient(135deg, #333, #555); 
+                   color: white; 
+                   border: none; 
+                   border-radius: 10px; 
+                   font-size: 14px; 
+                   cursor: pointer; 
+                   width: 100%; 
+                   text-transform: uppercase;
+                   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+                   transition: all 0.3s ease-in-out;"
+            onmouseover="this.style.background='linear-gradient(135deg, #555, #777)'; this.style.transform='scale(1.05)'" 
+            onmouseout="this.style.background='linear-gradient(135deg, #333, #555)'; this.style.transform='scale(1)'"
+            onclick="handleFormSubmit(event)">
+        שלח
+    </button>
+</form>
                     </div>
                     `;
                 
+                    // הצגת הפופאפ
+                    //marker.bindPopup(popupContent).openPopup();
                 }
                 else if(bar.id===3)
                 {
@@ -494,7 +523,7 @@ const App = () => {
                     iconUrl = bar.imageUrl ? `/img/${bar.imageUrl.toLowerCase().replace(/\s+/g, '-')}` : '/img/sport.jpg';
 
                     barIcon = L.divIcon({
-                        html: `<img src="${iconUrl}" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid white;" alt="${bar.name}"/>`,
+                        html: `<img src="${iconUrl}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid white;" alt="${bar.name}"/>`,
                         iconSize: [40, 40], // כאן קטנו את האייקון
                         className: 'custom-icon',
                      });
@@ -617,7 +646,7 @@ const App = () => {
             {
                 iconUrl = bar.photo && bar.photo.trim() !== ""  ? `/img/${bar.photo.toLowerCase().replace(/\s+/g, '-')}`   : (bar.type && bar.type.trim() !== ""  ? `/img/type/${bar.type.toLowerCase().replace(/\s+/g, '-')}.jpeg`  : '/img/aguda.png');
                 barIcon = L.divIcon({
-                   html: `<img src="${iconUrl}" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid white;" alt="${bar.name}"/>`,
+                   html: `<img src="${iconUrl}" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid white;" alt="${bar.name}"/>`,
                    iconSize: [60, 60],
                    className: 'custom-icon',
                });
@@ -631,7 +660,7 @@ const App = () => {
                         text-align: center; 
                         font-family: 'Poppins', Arial, sans-serif; 
                         padding: 20px; 
-                        background: url('img/agudabest3.png'); 
+                        background: url('img/newaguda.png'); 
                         background-size: cover; 
                         background-position: center center;
                         color: #000; 
@@ -756,6 +785,8 @@ const App = () => {
         });
     }, [data]);
     
+    
+    
 
     // פונקציה לטיפול בלחיצה על כפתור לייק
     /*
@@ -800,7 +831,7 @@ const App = () => {
         }
     };
 */
-const handleLikeClick = async (bar) => {
+    const handleLikeClick = async (bar) => {
     try {
         console.log(bar);
         var data;
@@ -826,13 +857,57 @@ const handleLikeClick = async (bar) => {
     } catch (error) {
         console.error('Error while liking the bar:', error);
     }
-};
+    };
     const toggleView = () => {
         setIsBarsView(!isBarsView);
     };
     const handlePhoneClick=()=> {
         alert('יש לך הנחה או ארוע לסטודנטים שבא לך שנכניס שלח וואטצאפ למספר - 0547456817   ');
       }
+    const handleFormSubmit = async (event) => {
+        event.preventDefault(); // מניעת רענון הדף
+        const email = document.getElementById('email').value;
+        const feedback = document.getElementById('feedback').value;
+        console.log(email);
+        console.log(feedback);
+
+
+        const userData = {
+            email: email,
+            review: feedback
+        };
+    
+        try {
+            // יצירת הבקשה עם BASE_API_URL כמו שעשית ב-axios
+            const response = await fetch(`${BASE_API_URL}/user/create`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userData),
+            });
+            console.log(response);
+
+            // אם התשובה לא בסדר (status לא 2xx), נזרוק שגיאה
+            if (!response.ok) {
+                throw new Error('הייתה בעיה עם בקשת השרת');
+            }
+    
+            // ממתינים לתגובה מהשרת
+            const data = await response.json();
+            console.log(data);
+            if (data.date && data.date !== "") {
+                alert('החוות דעת נשלחה בהצלחה!');
+            } else {
+                alert('הייתה בעיה ביצירת המשתמש: ' + data.message);
+            }
+        } catch (error) {
+            console.error('שגיאה בשליחה:', error);
+            alert('אירעה שגיאה בשליחה. אנא נסה שוב.');
+        }
+    };
+
+    
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>{error}</div>;
