@@ -210,18 +210,22 @@ const App = () => {
                     
                     popupContent = `
                     <div style="
-                        text-align: center; 
-                        font-family: 'Arial', sans-serif; 
-                        padding: 20px; 
-                        background: linear-gradient(135deg, #a8dadc, #f3c6c1);
-                        color: #333; 
-                        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); 
-                        max-width: 350px; 
-                        border-radius: 15px; 
-                        border: 1px solid #ccc;
-                        position: relative;
-                        overflow: hidden;
-                    ">
+                                    text-align: center; 
+                                    font-family: 'Arial', sans-serif; 
+                                    padding: 20px; 
+                                    background: url('img/getloosecard.png'); 
+                                    background-size: cover; 
+                                    background-position: center center;
+                                    color: #333; 
+                                    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); 
+                                    max-width: 100%; 
+                                    width: 350px;
+                                    border-radius: 15px; 
+                                    border: 1px solid #ccc;
+                                    position: relative;
+                                    overflow: hidden;
+                                    box-sizing: border-box;
+                                "><br/><br/>
                         <h3 style="
                             margin: 0 0 15px; 
                             font-size: 18px; 
@@ -250,7 +254,7 @@ const App = () => {
                         
                         <div style="
                             font-size: 14px; 
-                            color: #d9534f; 
+                              color: #000000; 
                             margin-bottom: 10px; 
                             font-weight: bold;">
                             <b>!חבילות בלעדיות למשחקי השתייה</b>
