@@ -970,7 +970,9 @@ const App = () => {
             const data = await response.json();
             console.log(data);
             if (data.date && data.date !== "") {
-                alert('החוות דעת נשלחה בהצלחה!');
+                alert(' נכנסת להגרלה ,הפרסים שתוכל לזכות בעמוד האינסטגרם');
+                // שלח לעמוד האינסטגרם
+                window.location.href = "https://www.instagram.com/get_l0ose";
             } else {
                 alert('הייתה בעיה ביצירת המשתמש: ' + data.message);
             }
