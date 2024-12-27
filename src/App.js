@@ -148,20 +148,19 @@ const App = () => {
      const sendToServer = async () => {
         if (!hasSentToServer.current && ip && location) {
             console.log(ip);
-            console.log(location);
-        /*
-          try {
-            await axios.post(`${BASE_API_URL}/create-user`, {
-              ip,
-              latitude: location.latitude,
-              longitude: location.longitude,
-            });
-            console.log('User created successfully:', { ip, ...location });
-            hasSentToServer.current = true; // סימון שהשליחה התבצעה
-          } catch (error) {
-            console.error('Error sending data to server:', error);
-          }
-        */
+            console.log(location);              
+            try {
+                await axios.post(`${BASE_API_URL}/visited/create`, {
+                    ip, // כתובת ה-IP של המכשיר
+                    latitude: location.latitude, // קואורדינטת רוחב
+                    longitude: location.longitude, // קואורדינטת אורך
+                });
+                console.log('Visited instance created successfully:', { ip, ...location });
+                hasSentToServer.current = true; // סימון שהשליחה התבצעה
+            } catch (error) {
+                console.error('Error sending visited data to server:', error);
+            }
+            
         }
       };
     
