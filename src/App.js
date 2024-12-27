@@ -71,6 +71,9 @@ const App = () => {
     const [error, setError] = useState(null);
     const [isBarsView, setIsBarsView] = useState(true);
     const [isFirstEnter, setFirstEnter] = useState(true);
+    const [location, setLocation] = useState(null);
+    const [ip, setIp] = useState(null);
+    const hasSentToServer = useRef(false); // וידוא שהשליחה מתבצעת רק פעם אחת
     
     const filterAndSortEvents = (events) => {
         const currentDate = new Date();
@@ -138,7 +141,73 @@ const App = () => {
         }
     };
      // שליחת בקשת POST פעם אחת בכניסה לאתר
-     
+
+     ////////////////
+     //נסיון הכנסה מיקום ואיי פי של מכשיר
+     ////////////////
+     const sendToServer = async () => {
+        if (!hasSentToServer.current && ip && location) {
+            console.log(ip);
+            console.log(location);
+        /*
+          try {
+            await axios.post(`${BASE_API_URL}/create-user`, {
+              ip,
+              latitude: location.latitude,
+              longitude: location.longitude,
+            });
+            console.log('User created successfully:', { ip, ...location });
+            hasSentToServer.current = true; // סימון שהשליחה התבצעה
+          } catch (error) {
+            console.error('Error sending data to server:', error);
+          }
+        */
+        }
+      };
+    
+      useEffect(() => {
+        // פונקציה לקבלת מיקום
+        const fetchLocation = () => {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+              (position) => {
+                const { latitude, longitude } = position.coords;
+                setLocation({ latitude, longitude });
+              },
+              (error) => {
+                console.error('Error fetching location:', error);
+              }
+            );
+          } else {
+            console.error('Geolocation is not supported by this browser.');
+          }
+        };
+    
+        // פונקציה לקבלת IP
+        const fetchIP = async () => {
+          try {
+            const response = await axios.get('https://api.ipify.org?format=json');
+            setIp(response.data.ip);
+          } catch (error) {
+            console.error('Error fetching IP:', error);
+          }
+        };
+    
+        fetchLocation();
+        fetchIP();
+      }, []); // הרצה פעם אחת בעת טעינת הקומפוננטה
+    
+      useEffect(() => {
+        // שליחת הנתונים לשרת אם כל הנתונים קיימים
+        if (ip && location) {
+          sendToServer();
+        }
+      }, [ip, location]); // מפעיל את הפונקציה כאשר ה-IP או המיקום מתעדכנים
+      ////////////
+      //סוף
+      ////////////
+
+
      useEffect(() => {
         const sendInitialLike = async () => {
             try {
@@ -365,7 +434,7 @@ const App = () => {
                             margin-bottom: 20px; 
                             font-size: 14px; 
                             color: #555;
-                        ">  🎁 ! הרשם וקבל הטבה השקה עלינו  🎁</p>
+                        ">  🎁!מלאו את דעתכם וכנסו להגרלה על הטבה🎁</p>
                 
                         <!-- טופס חוות דעת -->
                       <form id="feedbackForm" style="display: flex; flex-direction: column; align-items: center; width: 80%; margin: 0 auto;">
@@ -913,7 +982,7 @@ const App = () => {
 
     const handleWhatsAppClick = () => {
         const phoneNumber = '972547456817'; // פורמט בינלאומי (לישראל 972) ללא 0 מוביל
-        const message = encodeURIComponent('שלום! רציתי לשוחח איתך.');
+        const message = encodeURIComponent('יש לי הנחהֿֿ|אירוע לסטודנטים');
         const url = `https://wa.me/${phoneNumber}?text=${message}`;
         window.open(url, '_blank'); // פתיחת הקישור בלשונית חדשה
       };
