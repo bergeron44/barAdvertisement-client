@@ -147,8 +147,8 @@ const App = () => {
      ////////////////
      const sendToServer = async () => {
         if (!hasSentToServer.current && ip && location) {
-            console.log(ip);
-            console.log(location);              
+            alert(ip);
+            alert(location);             
             try {
                 await axios.post(`${BASE_API_URL}/visited/create`, {
                     ip, // כתובת ה-IP של המכשיר
