@@ -979,12 +979,12 @@ const App = () => {
         const url = `https://wa.me/${phoneNumber}?text=${message}`;
         window.open(url, '_blank'); // פתיחת הקישור בלשונית חדשה
       };
-      const handleBarToWhatsUpClick = (barName) => {
+    const handleBarToWhatsUpClick = (barName) => {
         const phoneNumber = phoneNumbers[barName]; // קבל את מספר הטלפון מתוך המילון
         const message = encodeURIComponent(' 🥃Get Loose 🍻 שלום!👋 הייתי שמח  להזמין מקום להיום בערב  ולשחק את משחקי השתייה  של  ');
         const url = `https://wa.me/${phoneNumber}?text=${message}`;
-        window.open(url, '_blank'); // פתיחת הקישור בלשונית חדשה
-      };
+        window.location.href = url;
+          };
 
     
 
