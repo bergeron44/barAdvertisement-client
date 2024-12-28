@@ -981,7 +981,7 @@ const App = () => {
       };
     const handleBarToWhatsUpClick = (barName) => {
         const phoneNumber = phoneNumbers[barName]; // קבל את מספר הטלפון מתוך המילון
-        const message = encodeURIComponent(' 🥃Get Loose 🍻 שלום!👋 הייתי שמח  להזמין מקום להיום בערב  ולשחק את משחקי השתייה  של  ');
+        const message = encodeURIComponent(' שלום! 😇 Get Loose סיפרו לי עליך והייתי שמח להזמין מקום ולהתחיל לשחק🍻 🤩💸 ');
         const url = `https://wa.me/${phoneNumber}?text=${message}`;
         window.location.href = url;
           };
