@@ -80,16 +80,12 @@ const App = () => {
         const thirtyDaysLater = new Date(currentDate);
         thirtyDaysLater.setDate(currentDate.getDate() + 30);
     
-        console.log("Current Date:", currentDate);
-        console.log("Thirty Days Later:", thirtyDaysLater);
     
         // סינון האירועים שמתקיימים תוך 30 ימים
         const filteredEvents = events.filter(event => {
             const eventDate = new Date(event.date);
-            console.log("Event Date:", eventDate);
             return eventDate > currentDate && eventDate <= thirtyDaysLater;
         });
-        console.log("Filtered Events:", filteredEvents);
     
         // החזרת מערך האירועים
         return filteredEvents;
@@ -108,7 +104,6 @@ const App = () => {
         const sortedEvents = futureEvents.sort((a, b) => new Date(a.date) - new Date(b.date));
     
         // אם יש פחות מ-20, פשוט מחזירים את כל מה שיש
-        console.log(sortedEvents);
         return sortedEvents.slice(0, 10);
     };
 
@@ -212,7 +207,6 @@ const App = () => {
                     setFirstEnter(false); // מונע בקשות נוספות
                     const data=await axios.post(`${BASE_API_URL}/bars/benGurionUniversity/like`);
                     console.log("Initial like sent successfully!");
-                    console.log(data.data);
                 }
             } catch (err) {
                 console.error("Failed to send initial like:", err);
@@ -859,48 +853,6 @@ const App = () => {
     
 
     // פונקציה לטיפול בלחיצה על כפתור לייק
-    /*
-    const handleLikeClick = async (bar) => {
-        try {
-            console.log(bar);
-            var data;
-            if(isBarsView)
-            {
-                data =await axios.post(`${BASE_API_URL}/bars/${bar.name}/like`);
-                if(bar.id===2)
-                {
-                    const url = bar.website || bar.instagram;  
-                    alert(url);
-                    if (url) {
-                        window.open(url, '_blank');
-                    }
-                    
-                }
-                else if(bar.id===3)
-                    {
-                        const url = bar.website || bar.instagram;  
-                        if (url) {
-                            window.open(url, '_blank');
-                        }
-                        
-                    }
-                else
-                {
-                        alert(`Get Loose ותחפש ברקוד של  ${bar.name} לך לבר `);
-                }
-            }
-            else
-            {
-               data= await axios.post(`${BASE_API_URL}/events/${bar._id}/like`);
-            }
-            console.log(data);
-
-            
-        } catch (error) {
-            console.error('Error while liking the bar:', error);
-        }
-    };
-*/
     const handleLikeClick = async (bar) => {
     try {
         console.log(bar);
@@ -923,7 +875,6 @@ const App = () => {
             data = await axios.post(`${BASE_API_URL}/events/${bar._id}/like`);
         }
 
-        console.log(data);
     } catch (error) {
         console.error('Error while liking the bar:', error);
     }
@@ -956,7 +907,6 @@ const App = () => {
                 },
                 body: JSON.stringify(userData),
             });
-            console.log(response);
 
             // אם התשובה לא בסדר (status לא 2xx), נזרוק שגיאה
             if (!response.ok) {
@@ -965,7 +915,6 @@ const App = () => {
     
             // ממתינים לתגובה מהשרת
             const data = await response.json();
-            console.log(data);
             if (data.date && data.date !== "") {
                 alert(' נכנסת להגרלה ,הפרסים שתוכל לזכות בעמוד האינסטגרם');
                 // שלח לעמוד האינסטגרם
