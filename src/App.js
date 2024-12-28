@@ -246,6 +246,7 @@ const App = () => {
     useEffect(() => {
         window.handleLikeClick = handleLikeClick;
         window.handleFormSubmit=handleFormSubmit;
+        window.handleWhatsAppClick=handleWhatsAppClick;
         if (!mapContainerRef.current) return;
         
         // הסרת מפה קיימת במקרה שהיא נטענה כבר
@@ -902,10 +903,7 @@ const App = () => {
                     }
                 } else {
                     if (phoneNumbers[bar.name]) {
-                        const phoneNumber = phoneNumbers[bar.name]; // קבל את מספר הטלפון מתוך המילון
-                        const message = encodeURIComponent(' 🥃Get Loose 🍻 שלום!👋 הייתי שמח  להזמין מקום להיום בערב  ולשחק את משחקי השתייה  של  ');
-                        const url = `https://wa.me/${phoneNumber}?text=${message}`;
-                        window.open(url, '_blank'); // פתיחת הקישור בלשונית חדשה
+                        handleBarToWhatsUpClick(bar.name);
                     } else {
                         alert(`לך לבר ${bar.name} ותחפש ברקוד של Get Loose`);
                     }
@@ -978,6 +976,12 @@ const App = () => {
     const handleWhatsAppClick = () => {
         const phoneNumber = '972547456817'; // פורמט בינלאומי (לישראל 972) ללא 0 מוביל
         const message = encodeURIComponent('יש לי הנחהֿֿ|אירוע לסטודנטים');
+        const url = `https://wa.me/${phoneNumber}?text=${message}`;
+        window.open(url, '_blank'); // פתיחת הקישור בלשונית חדשה
+      };
+      const handleBarToWhatsUpClick = (barName) => {
+        const phoneNumber = phoneNumbers[barName]; // קבל את מספר הטלפון מתוך המילון
+        const message = encodeURIComponent(' 🥃Get Loose 🍻 שלום!👋 הייתי שמח  להזמין מקום להיום בערב  ולשחק את משחקי השתייה  של  ');
         const url = `https://wa.me/${phoneNumber}?text=${message}`;
         window.open(url, '_blank'); // פתיחת הקישור בלשונית חדשה
       };
