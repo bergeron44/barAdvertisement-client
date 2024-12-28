@@ -146,9 +146,7 @@ const App = () => {
      //נסיון הכנסה מיקום ואיי פי של מכשיר
      ////////////////
      const sendToServer = async () => {
-        if (!hasSentToServer.current && ip && location) {
-            alert(ip);
-            alert(location);             
+        if (!hasSentToServer.current && ip && location) {            
             try {
                 await axios.post(`${BASE_API_URL}/visited/create`, {
                     ip, // כתובת ה-IP של המכשיר
