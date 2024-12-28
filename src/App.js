@@ -61,6 +61,25 @@ const locations = {
    "Roots Bar & Kitchen": { lat: 31.267882,lng: 34.800137},
    "halutz 33": { lat: 31.238207,lng: 34.788143},
 };
+const phoneNumbers={
+    "Bengi": "972",
+    "Lee Office": "972",
+    "BarGiora": "972526469647",
+    "Ashanhazman": "972544358915",
+    "SassonBar": "972526890151",
+    "Mileva": "972504800077",
+    "BarBaSaba": "972544988414",
+    "JEMS": "972507864130",
+    "nano": "972548183925",
+    "ringelblum13": "972522796201",
+    "מיני שני": "972",
+   "Friends": "972",
+   "Pub Giza": "972",
+   "Zalame ACB": "972",
+   "Château D'Or": "972",
+   "Roots Bar & Kitchen": "972",
+   "halutz 33": "972",
+}
 
 
 const App = () => {
@@ -882,7 +901,15 @@ const App = () => {
                         alert("אין קישור זמין עבור הבר הזה.");
                     }
                 } else {
-                    alert(`לך לבר ${bar.name} ותחפש ברקוד של Get Loose`);
+                    if (phoneNumbers[bar.name]) {
+                        const phoneNumber = phoneNumbers[bar.name]; // קבל את מספר הטלפון מתוך המילון
+                        const message = encodeURIComponent(' 🥃Get Loose 🍻 שלום!👋 הייתי שמח  להזמין מקום להיום בערב  ולשחק את משחקי השתייה  של  ');
+                        const url = `https://wa.me/${phoneNumber}?text=${message}`;
+                        window.open(url, '_blank'); // פתיחת הקישור בלשונית חדשה
+                    } else {
+                        alert(`לך לבר ${bar.name} ותחפש ברקוד של Get Loose`);
+                    }
+                    
                 }
             } else {
                     data = await axios.post(`${BASE_API_URL}/events/${bar._id}/like`);
