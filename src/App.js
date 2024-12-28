@@ -74,6 +74,7 @@ const App = () => {
     const [location, setLocation] = useState(null);
     const [ip, setIp] = useState(null);
     const hasSentToServer = useRef(false); // וידוא שהשליחה מתבצעת רק פעם אחת
+    const hasDidLike = useRef(false);
     
     const filterAndSortEvents = (events) => {
         const currentDate = new Date();
@@ -735,7 +736,7 @@ const App = () => {
                         position: relative;
                         animation: popUp 0.6s ease-out;
                     ">
-                    <br/><br/><br/><br/><br/>
+                    <br/><br/><br/><br/><br/><br/>
                         <div style="
                             position: absolute; 
                             top: 0; 
@@ -752,27 +753,36 @@ const App = () => {
                             color: #000; 
                             text-shadow: none;
                         ">${bar.name}</h3>
-                        <div style="
-                            margin: 15px 0; 
-                            font-size: 16px; 
-                            font-weight: 500; 
-                            background: rgba(255, 255, 255, 0.8); 
-                            padding: 10px; 
-                            border-radius: 10px;
-                        ">
-                            ${bar.website ? 
-                                `<a href="${bar.website}" target="_blank" style="
-                                    color: #007bff; 
-                                    text-decoration: underline; 
-                                    font-weight: bold;">להזמנת כרטיסים</a>` 
-                                : bar.instagram ? 
-                                    `<a href="${bar.instagram}" target="_blank" style="
-                                        color: #007bff; 
-                                        text-decoration: underline; 
-                                        font-weight: bold;">Instagram</a>` 
-                                    : '<span style="color: red;">Not Available</span>'
-                            }
-                        </div>
+                        
+                  ${bar.likes > 5 ? 
+                                    `<div style="
+                                        margin: 15px 0; 
+                                        font-size: 16px; 
+                                        font-weight: 500; 
+                                        background: linear-gradient(135deg, #ff0000, #ffffff); 
+                                        padding: 8px; /* גובה מוקטן */
+                                        border-radius: 15px; 
+                                        color: black; 
+                                        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); 
+                                        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+                                        text-align: center;">
+                                        <h4 style="margin: 0; font-size: 18px;">  לייקים  ${bar.likes} 👍</h4>
+                                    </div>` 
+                                    : 
+                                    `<div style="
+                                        margin: 15px 0; 
+                                        font-size: 16px; 
+                                        font-weight: 500; 
+                                        background: linear-gradient(135deg, #1e3a8a, #87ceeb, #ffffff);
+                                        padding: 8px; /* גובה מוקטן */
+                                        border-radius: 15px; 
+                                        color: black; 
+                                        text-align: center; 
+                                        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); 
+                                        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);">
+                                        <h4 style="margin: 0; font-size: 18px;">  👇 ? מה לא  תבואו 👇  </h4>
+                                    </div>`
+                                }
                         <div style="
                             margin-bottom: 15px; 
                             font-size: 14px; 
@@ -803,8 +813,9 @@ const App = () => {
                         " 
                         onmouseover="this.style.background='linear-gradient(135deg, #ff4a78, #ff758c)'; this.style.transform='scale(1.05)'" 
                         onmouseout="this.style.background='linear-gradient(135deg, #ff758c, #ff7eb3)'; this.style.transform='scale(1)'">
-                אני אגיע
+                          בא לי על הארוע
                         </button>
+
                         <p style="
                             margin-top: 15px; 
                             font-size: 14px; 
@@ -854,30 +865,39 @@ const App = () => {
 
     // פונקציה לטיפול בלחיצה על כפתור לייק
     const handleLikeClick = async (bar) => {
-    try {
-        console.log(bar);
-        var data;
-
-        if (isBarsView) {
-            data = await axios.post(`${BASE_API_URL}/bars/${bar.name}/like`);
-
-            if (bar.id === 2 || bar.id === 3) {
-                const url = bar.website || bar.instagram;
-                if (url) {
-                    window.location.href = url; // הפניה ישירה לכתובת ה-URL
+        try {
+            console.log(bar);
+            let data;
+    
+            if (isBarsView) {
+                // שליחת לייק לבר
+                data = await axios.post(`${BASE_API_URL}/bars/${bar.name}/like`);
+    
+                // בדיקת ID של הבר
+                if (bar.id === 2 || bar.id === 3) {
+                    const url = bar.website || bar.instagram;
+                    if (url) {
+                        window.location.href = url; // הפניה ישירה
+                    } else {
+                        alert("אין קישור זמין עבור הבר הזה.");
+                    }
                 } else {
-                    alert("אין קישור זמין עבור הבר הזה.");
+                    alert(`לך לבר ${bar.name} ותחפש ברקוד של Get Loose`);
                 }
             } else {
-                alert(`Get Loose ותחפש ברקוד של  ${bar.name} לך לבר `);
+                    data = await axios.post(`${BASE_API_URL}/events/${bar._id}/like`);
+                    hasDidLike.current = true;
+                    const url = bar.website || bar.instagram;
+                    if (url) {
+                        window.location.href = url; // הפניה ישירה
+                    } else {
+                        alert("אין קישור זמין עבור האירוע הזה.");
+                    }
+                
             }
-        } else {
-            data = await axios.post(`${BASE_API_URL}/events/${bar._id}/like`);
+        } catch (error) {
+            console.error("Error while liking the bar:", error);
         }
-
-    } catch (error) {
-        console.error('Error while liking the bar:', error);
-    }
     };
     const toggleView = () => {
         setIsBarsView(!isBarsView);
