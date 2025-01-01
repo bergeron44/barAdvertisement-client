@@ -1275,7 +1275,7 @@ const App = () => {
                 data = await axios.post(`${BASE_API_URL}/bars/${bar.name}/like`);
     
                 // בדיקת ID של הבר
-                if (bar.id === 2 || bar.id === 3) {
+                if (bar.id === 2 || bar.id === 3 || bar.id === 5) {
                     const url = bar.website || bar.instagram;
                     if (url) {
                         window.location.href = url; // הפניה ישירה
@@ -1286,6 +1286,7 @@ const App = () => {
                     if (phoneNumbers[bar.name]) {
                         handleBarToWhatsUpClick(bar.name);
                     } else {
+
                         alert(`לך לבר ${bar.name} ותחפש ברקוד של Get Loose`);
                     }
                     
