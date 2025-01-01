@@ -623,7 +623,7 @@ const App = () => {
                              text-align: center; 
                         font-family: 'Poppins', Arial, sans-serif; 
                         padding: 20px; 
-                        background: linear-gradient(135deg, #ffffff, #87ceeb); 
+                        background: linear-gradient(135deg, #ffffff, #6a0dad);
                         color: #000; 
                         box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5); 
                         max-width: 350px; 
@@ -641,7 +641,7 @@ const App = () => {
                             ">${bar.name}</h3>
                             <p style="
                                 font-size: 14px; 
-                                color: #555;
+                                color: #000;
                                 margin: 10px 0;
                             ">
 ✨ בוא לגלות את כל מה שמרגש באזור שלך✨                            </p>
@@ -797,7 +797,7 @@ const App = () => {
                         text-align: center; 
                         font-family: 'Poppins', Arial, sans-serif; 
                         padding: 20px; 
-                        background: linear-gradient(135deg, #ffffff, #87ceeb); 
+                        background: linear-gradient(135deg, #ffffff, #6a0dad);
                         color: #000; 
                         box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5); 
                         max-width: 350px; 
@@ -817,19 +817,20 @@ const App = () => {
                             pointer-events: none;">
                         </div>
                         
-                        <h3 style="
+                        <h2 style="
                             margin: 0; 
                             font-size: 22px; 
                             font-weight: bold; 
                             color: #000;">
                             ${bar.name}
-                        </h3>
+                        </h2>
                         
                         <p style="
                             margin: 15px 0; 
                             font-size: 16px; 
-                            color: #555;">
-✨ בוא לגלות את כל מה שמרגש באזור שלך✨                  
+                            color: #000;"><b>
+✨ בוא לגלות את כל מה שמרגש באזור שלך✨     
+</b>             
       </p>
                         
                     </div>
