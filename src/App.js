@@ -403,6 +403,137 @@ const App = () => {
                     </div>
                 `; 
                 }
+              /*  else if(bar.id===4)
+                    {
+                        iconUrl = bar.imageUrl ? `/img/bars/${bar.imageUrl.toLowerCase().replace(/\s+/g, '-')}` : '/img/logo.png';
+    
+                        barIcon = L.divIcon({
+                           html: `<img src="${iconUrl}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid white;" alt="${bar.name}"/>`,
+                           iconSize: [60, 60],
+                           className: 'custom-icon',
+                       });  
+    
+    
+           
+                        marker = L.marker([bar.lat, bar.lng], { icon: barIcon }).addTo(mapRef.current);
+           
+                       // יצירת popupContent רספונסיבי
+                        googleMapsLink = `https://www.google.com/maps?q=${bar.lat},${bar.lng}`;
+                        
+                        popupContent = `
+                        <div style="
+                                        text-align: center; 
+                                        font-family: 'Arial', sans-serif; 
+                                        padding: 20px; 
+                                        background: url('img/getloosecard4.png'); 
+                                        background-size: cover; 
+                                        background-position: center center;
+                                        color: #333; 
+                                        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); 
+                                        max-width: 100%; 
+                                        width: 350px;
+                                        border-radius: 15px; 
+                                        border: 1px solid #ccc;
+                                        position: relative;
+                                        overflow: hidden;
+                                        box-sizing: border-box;
+                                    "><br/><br/><br/>
+                            <h3 style="
+                                margin: 0 0 15px; 
+                                font-size: 18px; 
+                                font-weight: bold; 
+                                color: #333;
+                            ">${bar.name}</h3>
+                            
+                            <div style="
+                                margin-bottom: 15px; 
+                                font-size: 14px; 
+                                color: #555;
+                            ">
+                                ${bar.website ? 
+                                    `<a href="${bar.website}" target="_blank" style="
+                                        color: #007bff; 
+                                        text-decoration: underline; 
+                                        font-weight: bold;">Website</a>` 
+                                    : bar.instagram ? 
+                                        `<a href="${bar.instagram}" target="_blank" style="
+                                            color: #555; 
+                                            text-decoration: underline; 
+                                            font-weight: bold;">Instagram</a>` 
+                                        : '<span style="color: #999;">Not Available</span>'
+                                }
+                            </div>
+                            
+                            <div style="
+                                font-size: 14px; 
+                                  color: #000000; 
+                                margin-bottom: 10px; 
+                                font-weight: bold;">
+                                <b>!חבילות בלעדיות למשחקי השתייה</b>
+                            </div>
+                            
+                           <div style="
+                                font-size: 12px; 
+                                color: #333; 
+                                margin-bottom: 15px; 
+                                padding: 10px; 
+                                border-radius: 10px; 
+                                border: 1px solid #ddd;
+                                background-color: white; 
+                            ">
+                                ${bar.discountOne ? `<p style="
+                                    margin: 5px 0; 
+                                    font-weight: bold; 
+                                    font-size: 14px; 
+                                    color: #e91e63; 
+                                    text-transform: uppercase;
+                                ">${bar.discountOne}</p>` : ''}
+                                ${bar.discountSec ? `<p style="
+                                    margin: 5px 0; 
+                                    font-weight: normal; 
+                                    font-size: 14px; 
+                                    color: #9c27b0; 
+                                    text-transform: uppercase;
+                                ">${bar.discountSec}</p>` : ''}
+                                ${bar.discountThi ? `<p style="
+                                    margin: 5px 0; 
+                                    font-weight: normal; 
+                                    font-size: 14px; 
+                                    color: #f06292; 
+                                    text-transform: uppercase;
+                                ">${bar.discountThi}</p>` : ''}
+                            </div>
+                            
+                            <button class="like-button" data-bar-name="${bar.name}" style="
+                                padding: 12px 20px; 
+                                background: linear-gradient(135deg, #333, #555); 
+                                color: white; 
+                                border: none; 
+                                border-radius: 10px; 
+                                font-size: 14px; 
+                                cursor: pointer; 
+                                width: 100%; 
+                                text-transform: uppercase;
+                                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+                                transition: all 0.3s ease-in-out;
+                            "
+                            onmouseover="this.style.background='linear-gradient(135deg, #555, #777)'; this.style.transform='scale(1.05)'"
+                            onmouseout="this.style.background='linear-gradient(135deg, #333, #555)'; this.style.transform='scale(1)'">
+                              בא לי על ההנחה
+                            </button>
+                            
+                            <p style="
+                                margin-top: 15px; 
+                                font-size: 12px; 
+                                color: #333; 
+                                font-weight: bold;">
+                                <a href="${googleMapsLink}" target="_blank" style="
+                                    color: #007bff; 
+                                    text-decoration: underline;">נווט לבר</a>
+                            </p>
+                        </div>
+                    `; 
+                    } */
                 else if (bar.id === 0) {
                     iconUrl = bar.imageUrl ? `/img/${bar.imageUrl.toLowerCase().replace(/\s+/g, '-')}` : '/img/bengurionuniversity.jpeg';
                 
@@ -650,7 +781,7 @@ const App = () => {
                 
                     marker.bindPopup(popupContent);
                 }
-                else
+                else if(bar.id === 2)
                 {
                     iconUrl = bar.imageUrl ? `/img/${bar.imageUrl.toLowerCase().replace(/\s+/g, '-')}` : '/img/sport.jpg';
 
