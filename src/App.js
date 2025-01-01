@@ -603,6 +603,57 @@ const App = () => {
                          `;
                     
                 }
+                else if (bar.id === 5) {
+                    // בודק אם המיקום שלי זמין ומשתמש בו
+                    const markerLat = location?.latitude || bar.lat;
+                    const markerLng = location?.longitude || bar.lng;
+                
+                    iconUrl = '/img/imhere.png';
+                
+                    barIcon = L.divIcon({
+                        html: `<img src="${iconUrl}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid white;" alt="${bar.name}"/>`,
+                        iconSize: [60, 60],
+                        className: 'custom-icon',
+                    });
+                
+                    marker = L.marker([markerLat, markerLng], { icon: barIcon }).addTo(mapRef.current);
+                
+                    popupContent = `
+                        <div style="
+                            text-align: center; 
+                            font-family: 'Arial', sans-serif; 
+                            padding: 20px; 
+                            background: url('img/location-background.png'); 
+                            background-size: cover; 
+                            background-position: center center;
+                            color: #333; 
+                            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); 
+                            max-width: 100%; 
+                            width: 300px;
+                            border-radius: 15px; 
+                            border: 1px solid #ccc;
+                            position: relative;
+                            overflow: hidden;
+                            box-sizing: border-box;
+                        ">
+                            <h3 style="
+                                margin: 0 0 15px; 
+                                font-size: 18px; 
+                                font-weight: bold; 
+                                color: #333;
+                            ">${bar.name}</h3>
+                            <p style="
+                                font-size: 14px; 
+                                color: #555;
+                                margin: 10px 0;
+                            ">
+                                 סתובב במפה ותמצא לך אירועים והנחות
+                            </p>
+                        </div>
+                    `;
+                
+                    marker.bindPopup(popupContent);
+                }
                 else
                 {
                     iconUrl = bar.imageUrl ? `/img/${bar.imageUrl.toLowerCase().replace(/\s+/g, '-')}` : '/img/sport.jpg';
@@ -729,6 +780,204 @@ const App = () => {
             }
             else
             {
+             if(bar.type==='me')
+                {
+                    const markerLat = location?.latitude || bar.lat;
+                    const markerLng = location?.longitude || bar.lng;
+                    iconUrl ='/img/imhere.png';
+                    barIcon = L.divIcon({
+                       html: `<img src="${iconUrl}" style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover; border: 2px solid white;" alt="${bar.name}"/>`,
+                       iconSize: [60, 60],
+                       className: 'custom-icon',
+                   });
+       
+                    marker = L.marker([markerLat, markerLng], { icon: barIcon }).addTo(mapRef.current);
+       
+                   // יצירת popupContent רספונסיבי
+                    googleMapsLink = `https://www.google.com/maps?q=${bar.location.lat},${bar.location.lng}`;
+
+                    popupContent = `
+                    <div style="
+                        text-align: center; 
+                        font-family: 'Poppins', Arial, sans-serif; 
+                        padding: 20px; 
+                        background: rgba(255, 255, 255, 0.9); 
+                        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5); 
+                        max-width: 350px; 
+                        border-radius: 20px; 
+                        overflow: hidden; 
+                        position: relative;
+                        animation: popUp 0.6s ease-out;
+                    ">
+                        <div style="
+                            position: absolute; 
+                            top: 0; 
+                            left: 0; 
+                            width: 100%; 
+                            height: 100%; 
+                            background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.4), transparent); 
+                            pointer-events: none;">
+                        </div>
+                        
+                        <h3 style="
+                            margin: 0; 
+                            font-size: 22px; 
+                            font-weight: bold; 
+                            color: #000;">
+                            ${bar.name}
+                        </h3>
+                        
+                        <p style="
+                            margin: 15px 0; 
+                            font-size: 16px; 
+                            color: #555;">
+                                 סתובב במפה ותמצא לך אירועים והנחות
+                        </p>
+                        
+                    </div>
+            
+                    <style>
+                        @keyframes popUp {
+                            from {
+                                transform: scale(0.8);
+                                opacity: 0;
+                            }
+                            to {
+                                transform: scale(1);
+                                opacity: 1;
+                            }
+                        }
+                    </style>
+                `;
+
+                }
+            else if(bar.type==='object')
+               {
+                iconUrl = bar.photo && bar.photo.trim() !== ""  ? `/img/${bar.photo.toLowerCase().replace(/\s+/g, '-')}`   : (bar.type && bar.type.trim() !== ""  ? `/img/type/${bar.type.toLowerCase().replace(/\s+/g, '-')}.jpeg`  : '/img/aguda.png');
+                barIcon = L.divIcon({
+                   html: `<img src="${iconUrl}" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid white;" alt="${bar.name}"/>`,
+                   iconSize: [60, 60],
+                   className: 'custom-icon',
+               });
+   
+                marker = L.marker([bar.location.lat, bar.location.lng], { icon: barIcon }).addTo(mapRef.current);
+   
+               // יצירת popupContent רספונסיבי
+                googleMapsLink = `https://www.google.com/maps?q=${bar.location.lat},${bar.location.lng}`;
+                popupContent = `
+                    <div style="
+                         text-align: center; 
+                        font-family: 'Poppins', Arial, sans-serif; 
+                        padding: 20px; 
+                        background: linear-gradient(135deg, #ffffff, #87ceeb); 
+                        color: #000; 
+                        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5); 
+                        max-width: 350px; 
+                        border-radius: 20px; 
+                        overflow: hidden; 
+                        position: relative;
+                        animation: popUp 0.6s ease-out;
+                        border: 3px solid rgba(135, 206, 235, 0.7);
+                    ">
+                    <br/>
+                        <div style="
+                            position: absolute; 
+                            top: 0; 
+                            left: 0; 
+                            width: 100%; 
+                            height: 100%; 
+                            background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.4), transparent); 
+                            pointer-events: none;">
+                        </div>
+                        <h3 style="
+                            margin: 0; 
+                            font-size: 22px; 
+                            font-weight: bold; 
+                            color: #000; 
+                            text-shadow: none;
+                        ">${bar.name}</h3>
+                        
+                  ${bar.likes > 5 ? 
+                                    `<div style="
+                                        margin: 15px 0; 
+                                        font-size: 16px; 
+                                        font-weight: 500; 
+                                        background: linear-gradient(135deg, #ff0000, #ffffff); 
+                                        padding: 8px; /* גובה מוקטן */
+                                        border-radius: 15px; 
+                                        color: black; 
+                                        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); 
+                                        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+                                        text-align: center;">
+                                        <h4 style="margin: 0; font-size: 18px;">  לייקים  ${bar.likes} 👍</h4>
+                                    </div>` 
+                                    : 
+                                    `<div style="
+                                        margin: 15px 0; 
+                                        font-size: 16px; 
+                                        font-weight: 500; 
+                                        background: linear-gradient(135deg, #1e3a8a, #87ceeb, #ffffff);
+                                        padding: 8px; /* גובה מוקטן */
+                                        border-radius: 15px; 
+                                        color: black; 
+                                        text-align: center; 
+                                        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); 
+                                        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);">
+                                        <h4 style="margin: 0; font-size: 18px;">  👇 ? מה לא  תבואו 👇  </h4>
+                                    </div>`
+                                }
+                        <div style="
+                            margin-bottom: 15px; 
+                            font-size: 14px; 
+                            color: #000; 
+                            background: rgba(255, 255, 255, 0.8); 
+                            padding: 10px; 
+                            border-radius: 10px;">
+                            ${bar.description ? `<p>${bar.description}</p>` : ''}
+                        </div>
+                        <button class="like-button" data-bar-name="${bar.name}" style="
+                            padding: 12px 20px; 
+                            background: linear-gradient(135deg, #ff758c, #ff7eb3); 
+                            color: white; 
+                            border: none; 
+                            border-radius: 15px; 
+                            font-size: 14px; 
+                            cursor: pointer; 
+                            width: 100%; 
+                            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+                            transition: all 0.4s ease-in-out;
+                        " 
+                        onmouseover="this.style.background='linear-gradient(135deg, #ff4a78, #ff758c)'; this.style.transform='scale(1.05)'" 
+                        onmouseout="this.style.background='linear-gradient(135deg, #ff758c, #ff7eb3)'; this.style.transform='scale(1)'">
+                            ממליץ
+                        </button>
+
+                        <p style="
+                            margin-top: 15px; 
+                            font-size: 14px; 
+                            font-weight: bold;">
+                            <a href="${googleMapsLink}" target="_blank" style="
+                                color: #007bff; 
+                                text-decoration: underline;">נווט</a>
+                        </p>
+                    </div>
+
+                    <style>
+                        @keyframes popUp {
+                            from {
+                                transform: scale(0.8);
+                                opacity: 0;
+                            }
+                            to {
+                                transform: scale(1);
+                                opacity: 1;
+                            }
+                        }
+                    </style>
+                `;
+               }
+            else
+               {
                 iconUrl = bar.photo && bar.photo.trim() !== ""  ? `/img/${bar.photo.toLowerCase().replace(/\s+/g, '-')}`   : (bar.type && bar.type.trim() !== ""  ? `/img/type/${bar.type.toLowerCase().replace(/\s+/g, '-')}.jpeg`  : '/img/aguda.png');
                 barIcon = L.divIcon({
                    html: `<img src="${iconUrl}" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid white;" alt="${bar.name}"/>`,
@@ -859,6 +1108,8 @@ const App = () => {
                         }
                     </style>
                 `;
+               }
+               
 
 
 
@@ -981,7 +1232,7 @@ const App = () => {
       };
     const handleBarToWhatsUpClick = (barName) => {
         const phoneNumber = phoneNumbers[barName]; // קבל את מספר הטלפון מתוך המילון
-        const message = encodeURIComponent(' שלום! 😇 Get Loose סיפרו לי עליך והייתי שמח להזמין מקום ולהתחיל לשחק🍻 🤩💸 ');
+        const message = encodeURIComponent(' שלום!  Get Loose סיפרו לי עליך והייתי שמח להזמין מקום ולהתחיל לשחק  ');
         const url = `https://wa.me/${phoneNumber}?text=${message}`;
         window.location.href = url;
           };
