@@ -403,7 +403,7 @@ const App = () => {
                     </div>
                 `; 
                 }
-              /*  else if(bar.id===4)
+                else if(bar.id===4)
                     {
                         iconUrl = bar.imageUrl ? `/img/bars/${bar.imageUrl.toLowerCase().replace(/\s+/g, '-')}` : '/img/logo.png';
     
@@ -479,27 +479,27 @@ const App = () => {
                                 padding: 10px; 
                                 border-radius: 10px; 
                                 border: 1px solid #ddd;
-                                background-color: white; 
+                                background-color: white; /* רקע לבן */
                             ">
                                 ${bar.discountOne ? `<p style="
                                     margin: 5px 0; 
                                     font-weight: bold; 
                                     font-size: 14px; 
-                                    color: #e91e63; 
+                                    color: #e91e63; /* צבע אדום-ורוד */
                                     text-transform: uppercase;
                                 ">${bar.discountOne}</p>` : ''}
                                 ${bar.discountSec ? `<p style="
                                     margin: 5px 0; 
                                     font-weight: normal; 
                                     font-size: 14px; 
-                                    color: #9c27b0; 
+                                    color: #9c27b0; /* צבע ארגמן */
                                     text-transform: uppercase;
                                 ">${bar.discountSec}</p>` : ''}
                                 ${bar.discountThi ? `<p style="
                                     margin: 5px 0; 
                                     font-weight: normal; 
                                     font-size: 14px; 
-                                    color: #f06292; 
+                                    color: #f06292; /* צבע ורוד חזק */
                                     text-transform: uppercase;
                                 ">${bar.discountThi}</p>` : ''}
                             </div>
@@ -533,7 +533,7 @@ const App = () => {
                             </p>
                         </div>
                     `; 
-                    } */
+                    }
                 else if (bar.id === 0) {
                     iconUrl = bar.imageUrl ? `/img/${bar.imageUrl.toLowerCase().replace(/\s+/g, '-')}` : '/img/bengurionuniversity.jpeg';
                 
