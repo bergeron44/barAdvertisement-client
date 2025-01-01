@@ -580,31 +580,31 @@ const App = () => {
                         ">  🎁!מלאו את דעתכם וכנסו להגרלה על הטבה🎁</p>
                 
                         <!-- טופס חוות דעת -->
-                      <form id="feedbackForm" style="display: flex; flex-direction: column; align-items: center; width: 80%; margin: 0 auto;">
-    <input type="email" id="email" name="email" placeholder="הכנס את המייל שלך" required
-           style="width: 80%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc;">
-    
-    <textarea id="feedback" name="feedback" placeholder="הכנס את חוות הדעת שלך" required
-              style="width: 80%; padding: 10px; height: 100px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc;"></textarea>
-    
-    <button type="button" 
-            style="padding: 12px 20px; 
-                   background: linear-gradient(135deg, #333, #555); 
-                   color: white; 
-                   border: none; 
-                   border-radius: 10px; 
-                   font-size: 14px; 
-                   cursor: pointer; 
-                   width: 100%; 
-                   text-transform: uppercase;
-                   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-                   transition: all 0.3s ease-in-out;"
-            onmouseover="this.style.background='linear-gradient(135deg, #555, #777)'; this.style.transform='scale(1.05)'" 
-            onmouseout="this.style.background='linear-gradient(135deg, #333, #555)'; this.style.transform='scale(1)'"
-            onclick="handleFormSubmit(event)">
-        שלח
-    </button>
-</form>
+                                            <form id="feedbackForm" style="display: flex; flex-direction: column; align-items: center; width: 80%; margin: 0 auto;">
+                            <input type="email" id="email" name="email" placeholder="הכנס את המייל שלך" required
+                                style="width: 80%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc;">
+                            
+                            <textarea id="feedback" name="feedback" placeholder="הכנס את חוות הדעת שלך" required
+                                    style="width: 80%; padding: 10px; height: 100px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc;"></textarea>
+                            
+                            <button type="button" 
+                                    style="padding: 12px 20px; 
+                                        background: linear-gradient(135deg, #333, #555); 
+                                        color: white; 
+                                        border: none; 
+                                        border-radius: 10px; 
+                                        font-size: 14px; 
+                                        cursor: pointer; 
+                                        width: 100%; 
+                                        text-transform: uppercase;
+                                        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+                                        transition: all 0.3s ease-in-out;"
+                                    onmouseover="this.style.background='linear-gradient(135deg, #555, #777)'; this.style.transform='scale(1.05)'" 
+                                    onmouseout="this.style.background='linear-gradient(135deg, #333, #555)'; this.style.transform='scale(1)'"
+                                    onclick="handleFormSubmit(event)">
+                                שלח
+                            </button>
+                        </form>
                     </div>
                     `;
                 
@@ -1285,7 +1285,14 @@ const App = () => {
                 }
                 else if(bar.id === 4)
                 {
-                    
+                    /////////////////////////////////////////לתקן
+                    const url = bar.website || bar.instagram;
+                    if (url) {
+                        window.location.href = url; // הפניה ישירה
+                    } else {
+                        alert("אין קישור זמין עבור הבר הזה.");
+                    }
+                    ////////////////////////////////////////
                 }
                 else {
                     if (phoneNumbers[bar.name]) {
@@ -1368,7 +1375,7 @@ const App = () => {
       };
     const handleBarToWhatsUpClick = (barName) => {
         const phoneNumber = phoneNumbers[barName]; // קבל את מספר הטלפון מתוך המילון
-        const message = encodeURIComponent(' שלום!  Get Loose סיפרו לי עליך והייתי שמח להזמין מקום ולהתחיל לשחק  ');
+        const message = encodeURIComponent(' שלום!  Get Loose סיפרו לי עליך והייתי שמח להזמין מקום ולהתחיל לשחק במשחקי השתייה!!!  ');
         const url = `https://wa.me/${phoneNumber}?text=${message}`;
         window.location.href = url;
           };
