@@ -274,7 +274,7 @@ const App = () => {
             {
                 if(bar.id===1)
                 {
-                    iconUrl = bar.imageUrl ? `/img/${bar.imageUrl.toLowerCase().replace(/\s+/g, '-')}` : '/img/sport.jpg';
+                    iconUrl = bar.imageUrl ? `/img/bars/${bar.imageUrl.toLowerCase().replace(/\s+/g, '-')}` : '/img/logo.png';
 
                     barIcon = L.divIcon({
                        html: `<img src="${iconUrl}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid white;" alt="${bar.name}"/>`,
@@ -620,21 +620,18 @@ const App = () => {
                 
                     popupContent = `
                         <div style="
-                            text-align: center; 
-                            font-family: 'Arial', sans-serif; 
-                            padding: 20px; 
-                            background: url('img/location-background.png'); 
-                            background-size: cover; 
-                            background-position: center center;
-                            color: #333; 
-                            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); 
-                            max-width: 100%; 
-                            width: 300px;
-                            border-radius: 15px; 
-                            border: 1px solid #ccc;
-                            position: relative;
-                            overflow: hidden;
-                            box-sizing: border-box;
+                             text-align: center; 
+                        font-family: 'Poppins', Arial, sans-serif; 
+                        padding: 20px; 
+                        background: linear-gradient(135deg, #ffffff, #87ceeb); 
+                        color: #000; 
+                        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5); 
+                        max-width: 350px; 
+                        border-radius: 20px; 
+                        overflow: hidden; 
+                        position: relative;
+                        animation: popUp 0.6s ease-out;
+                        border: 3px solid rgba(135, 206, 235, 0.7);
                         ">
                             <h3 style="
                                 margin: 0 0 15px; 
@@ -801,13 +798,15 @@ const App = () => {
                         text-align: center; 
                         font-family: 'Poppins', Arial, sans-serif; 
                         padding: 20px; 
-                        background: rgba(255, 255, 255, 0.9); 
+                        background: linear-gradient(135deg, #ffffff, #87ceeb); 
+                        color: #000; 
                         box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5); 
                         max-width: 350px; 
                         border-radius: 20px; 
                         overflow: hidden; 
                         position: relative;
                         animation: popUp 0.6s ease-out;
+                        border: 3px solid rgba(135, 206, 235, 0.7);
                     ">
                         <div style="
                             position: absolute; 
@@ -1129,7 +1128,7 @@ const App = () => {
                 }
             });
         });
-    }, [data]);
+    }, [data,location]);
     
     
     
