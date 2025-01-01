@@ -1275,14 +1275,19 @@ const App = () => {
                 data = await axios.post(`${BASE_API_URL}/bars/${bar.name}/like`);
     
                 // בדיקת ID של הבר
-                if (bar.id === 2 || bar.id === 3 || bar.id === 5) {
+                if (bar.id === 2 || bar.id === 3 ) {
                     const url = bar.website || bar.instagram;
                     if (url) {
                         window.location.href = url; // הפניה ישירה
                     } else {
                         alert("אין קישור זמין עבור הבר הזה.");
                     }
-                } else {
+                }
+                else if(bar.id === 4)
+                {
+                    
+                }
+                else {
                     if (phoneNumbers[bar.name]) {
                         handleBarToWhatsUpClick(bar.name);
                     } else {
