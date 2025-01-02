@@ -986,7 +986,7 @@ const App = () => {
                {
                 iconUrl = bar.photo && bar.photo.trim() !== ""  ? `/img/${bar.photo.toLowerCase().replace(/\s+/g, '-')}`   : (bar.type && bar.type.trim() !== ""  ? `/img/type/${bar.type.toLowerCase().replace(/\s+/g, '-')}.jpeg`  : '/img/aguda.png');
                 barIcon = L.divIcon({
-                   html: `<img src="${iconUrl}" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid white;" alt="${bar.name}"/>`,
+                   html: `<img src="${iconUrl}" style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover; border: 2px solid white;" alt="${bar.name}"/>`,
                    iconSize: [60, 60],
                    className: 'custom-icon',
                });
@@ -1054,7 +1054,7 @@ const App = () => {
                                         text-align: center; 
                                         text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); 
                                         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);">
-                                        <h4 style="margin: 0; font-size: 18px;">  👇 ? מה לא  תבואו 👇  </h4>
+                                        <h4 style="margin: 0; font-size: 18px;">  👇 נוח,שקט,נעים? פרגנו👇  </h4>
                                     </div>`
                                 }
                         <div style="
