@@ -79,6 +79,7 @@ const phoneNumbers={
    "Château D'Or": "972",
    "Roots Bar & Kitchen": "972",
    "halutz 33": "972",
+   "doctor":"972543479772",
 }
 
 
