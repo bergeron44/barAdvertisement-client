@@ -1309,7 +1309,15 @@ const App = () => {
                     hasDidLike.current = true;
                     const url = bar.website || bar.instagram;
                     if (url) {
-                        window.location.href = url; // הפניה ישירה
+                        if(bar.type==='object') 
+                        {
+                            alert("הוספת לייק למיקרו שאתה אוהב");
+                        }
+                        else
+                        {
+                            window.location.href = url; // הפניה ישירה
+                        }
+                       
                     } else {
                         alert("אין קישור זמין עבור האירוע הזה.");
                     }
