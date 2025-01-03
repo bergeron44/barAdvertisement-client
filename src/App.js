@@ -470,7 +470,7 @@ const App = () => {
                                   color: #000000; 
                                 margin-bottom: 10px; 
                                 font-weight: bold;">
-                                <b>!חבילות בלעדיות למשחקי השתייה</b>
+                                <b>😋 ! ! !  לסטודנטים בלבד  😋</b>
                             </div>
                             
                            <div style="
@@ -503,6 +503,13 @@ const App = () => {
                                     color: #f06292; /* צבע ורוד חזק */
                                     text-transform: uppercase;
                                 ">${bar.discountThi}</p>` : ''}
+                            </div>
+                              <div style="
+                                font-size: 14px; 
+                                  color: #000000; 
+                                margin-bottom: 10px; 
+                                font-weight: bold;">
+                                <b>רק בהגעה למקום והצגת המפה</b>
                             </div>
                             
                             <button class="like-button" data-bar-name="${bar.name}" style="
