@@ -257,7 +257,7 @@ const App = () => {
          
         // יצירת מפה חדשה
         if(isBarsView)
-          mapRef.current = L.map(mapContainerRef.current).setView([31.2622, 34.8013], 14);
+          mapRef.current = L.map(mapContainerRef.current).setView([31.2622, 34.8013], 13);
         else
           mapRef.current = L.map(mapContainerRef.current).setView([31.2622, 34.8013], 17);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
